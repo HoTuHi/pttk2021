@@ -1,10 +1,10 @@
 ## Hệ thống quản lý máy bay
 
-@author HoTuHi
-
-![](https://img.shields.io/gitlab/stars/pttk2021/editor.md.svg)
+@author
 
 _______
+Java
+![img.png](img.png)
 
 ## Cấu trúc folder
 
@@ -42,6 +42,3 @@ Logic
 **Visual paradigm, Docs, ...**
 [Link Drive](https://drive.google.com/drive/folders/1MnRWlYfC0M3rlI0FgNvf4DlWtERSRKzT?usp=sharing)
 ##END
-
-- [ ] https://github.com/octo-org/octo-repo/issues/740
-- [ ] Add delight to the experience when all tasks are complete :tada:

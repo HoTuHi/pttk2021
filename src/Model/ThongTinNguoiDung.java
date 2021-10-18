@@ -11,7 +11,7 @@ public class ThongTinNguoiDung implements Serializable {
     private String email,sdt;
     private Timestamp khoitao;
     private DiaChi diaChi;
-    private int ttndma=100000;
+    private static int ttndma=100000;
     public ThongTinNguoiDung() {
         this.id=ttndma++;
     }
@@ -100,11 +100,11 @@ public class ThongTinNguoiDung implements Serializable {
         this.diaChi = diaChi;
     }
 
-    public int getTtndma() {
+    public static int getTtndma() {
         return ttndma;
     }
 
-    public void setTtndma(int ttndma) {
-        this.ttndma = ttndma;
+    public static void setTtndma(int ttndma) {
+        ThongTinNguoiDung.ttndma = ttndma;
     }
 }

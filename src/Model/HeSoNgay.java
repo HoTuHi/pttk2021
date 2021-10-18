@@ -6,7 +6,7 @@ public class HeSoNgay  implements Serializable {
     private int id;
     private float heso;
     private String ghichu;
-    private int nma=1000;
+    private static int nma=1000;
 
     public HeSoNgay() {
         this.id=nma++;
@@ -42,11 +42,11 @@ public class HeSoNgay  implements Serializable {
         this.ghichu = ghichu;
     }
 
-    public int getNma() {
+    public static int getNma() {
         return nma;
     }
 
-    public void setNma(int nma) {
-        this.nma = nma;
+    public static void setNma(int nma) {
+        HeSoNgay.nma = nma;
     }
 }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class TinhTrang  implements Serializable {
     private int id;
     private boolean tinhtrang; //True is enable, false is disable;
-    private int tma=100;
+    private static int tma=100;
 
     public TinhTrang() {
         this.id=tma++;
@@ -32,11 +32,12 @@ public class TinhTrang  implements Serializable {
         this.tinhtrang = tinhtrang;
     }
 
-    public int getTma() {
+    public static int getTma() {
         return tma;
     }
 
-    public void setTma(int tma) {
-        this.tma = tma;
+    public static void setTma(int tma) {
+        TinhTrang.tma = tma;
     }
+
 }

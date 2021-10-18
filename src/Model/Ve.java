@@ -4,17 +4,17 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class Ve implements Serializable {
-    int id;
-    DiaChi diemDi;
-    DiaChi diemDen;
-    String hoTen;
-    Timestamp thoiGianKhoiTao;
-    int soHieuMayBay;
-    int hangVe;
-    int maSoGHe;
-    ThongTinNguoiDung thongTinNguoiDung;
-    ChuyenBay ChuyenBay;
-    HoaDon hoaDon;
+    private int id;
+    private DiaChi diemDi;
+    private DiaChi diemDen;
+    private String hoTen;
+    private Timestamp thoiGianKhoiTao;
+    private int soHieuMayBay;
+    private int hangVe;
+    private int maSoGHe;
+    private ThongTinNguoiDung thongTinNguoiDung;
+    private ChuyenBay chuyenBay;
+    private HoaDon hoaDon;
 
     public Ve(int id, DiaChi diemDi, DiaChi diemDen, String hoTen, Timestamp thoiGianKhoiTao, int soHieuMayBay, int hangVe, int maSoGHe, ThongTinNguoiDung thongTinNguoiDung, Model.ChuyenBay chuyenBay, HoaDon hoaDon) {
         this.id = id;
@@ -26,7 +26,7 @@ public class Ve implements Serializable {
         this.hangVe = hangVe;
         this.maSoGHe = maSoGHe;
         this.thongTinNguoiDung = thongTinNguoiDung;
-        ChuyenBay = chuyenBay;
+        this.chuyenBay = chuyenBay;
         this.hoaDon = hoaDon;
     }
 
@@ -102,12 +102,12 @@ public class Ve implements Serializable {
         this.thongTinNguoiDung = thongTinNguoiDung;
     }
 
-    public Model.ChuyenBay getChuyenBay() {
-        return ChuyenBay;
+    public ChuyenBay getChuyenBay() {
+        return chuyenBay;
     }
 
-    public void setChuyenBay(Model.ChuyenBay chuyenBay) {
-        ChuyenBay = chuyenBay;
+    public void setChuyenBay(ChuyenBay chuyenBay) {
+        this.chuyenBay = chuyenBay;
     }
 
     public HoaDon getHoaDon() {

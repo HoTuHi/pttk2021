@@ -10,7 +10,7 @@ public class NguoiDung  implements Serializable {
     private Timestamp timestamp;
     private Quyen quyen;
     private TinhTrang tinhTrang;
-    private int ndma=1000000;
+    private static int ndma=1000000;
 
     public NguoiDung() {
         this.id=ndma++;
@@ -24,6 +24,14 @@ public class NguoiDung  implements Serializable {
         this.timestamp = timestamp;
         this.quyen = quyen;
         this.tinhTrang = tinhTrang;
+    }
+
+    public static int getNdma() {
+        return ndma;
+    }
+
+    public static void setNdma(int ndma) {
+        NguoiDung.ndma = ndma;
     }
 
     public int getId() {

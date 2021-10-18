@@ -6,7 +6,7 @@ public class HeSoGio  implements Serializable {
     private int id;
     private float heso;
     private String ghichu;
-    private int hma=100;
+    private static int hma=100;
 
     public HeSoGio() {
     }
@@ -41,11 +41,12 @@ public class HeSoGio  implements Serializable {
         this.ghichu = ghichu;
     }
 
-    public int getHma() {
+    public static int getHma() {
         return hma;
     }
 
-    public void setHma(int hma) {
-        this.hma = hma;
+    public static void setHma(int hma) {
+        HeSoGio.hma = hma;
     }
+
 }

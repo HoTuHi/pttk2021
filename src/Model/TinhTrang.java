@@ -3,15 +3,17 @@ package Model;
 import java.io.Serializable;
 
 public class TinhTrang  implements Serializable {
-    int id;
-    boolean tinhTrang; // true is enable, false is disabled
-    int tma=10001;
-    public TinhTrang(){
+    private int id;
+    private boolean tinhtrang; //True is enable, false is disable;
+    private int tma=100;
+
+    public TinhTrang() {
         this.id=tma++;
     }
-    public TinhTrang(int id, boolean tinhTrang) {
+
+    public TinhTrang(int id, boolean tinhtrang) {
         this.id = id;
-        this.tinhTrang = tinhTrang;
+        this.tinhtrang = tinhtrang;
     }
 
     public int getId() {
@@ -22,11 +24,19 @@ public class TinhTrang  implements Serializable {
         this.id = id;
     }
 
-    public boolean isTinhTrang() {
-        return tinhTrang;
+    public boolean isTinhtrang() {
+        return tinhtrang;
     }
 
-    public void setTinhTrang(boolean tinhTrang) {
-        this.tinhTrang = tinhTrang;
+    public void setTinhtrang(boolean tinhtrang) {
+        this.tinhtrang = tinhtrang;
+    }
+
+    public int getTma() {
+        return tma;
+    }
+
+    public void setTma(int tma) {
+        this.tma = tma;
     }
 }

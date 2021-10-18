@@ -3,21 +3,20 @@ package Model;
 import java.io.Serializable;
 
 public class DiaChi implements Serializable {
-    int id;
-    String xa,huyen,tinh,quocgia;
-    int dma=1000;
+    private int id;
+    private String xa,huyen,tinh,quocgia;
+    private int dma=100000;
 
     public DiaChi() {
-        this.id=dma;
+        this.id=dma++;
     }
 
-    public DiaChi(int id, String xa, String huyen, String tinh, String quocgia, int dma) {
+    public DiaChi(int id, String xa, String huyen, String tinh, String quocgia) {
         this.id = id;
         this.xa = xa;
         this.huyen = huyen;
         this.tinh = tinh;
         this.quocgia = quocgia;
-        this.dma = dma;
     }
 
     public int getId() {

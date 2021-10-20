@@ -1,6 +1,15 @@
 import React from 'react';
-import { FaRoute, FaArrowAltCircleRight, FaUserFriends, FaSuitcase, FaTelegramPlane, FaTicketAlt, FaWallet} from 'react-icons/fa';
-import { BiDotsHorizontalRounded } from 'react-icons/bi'
+import {
+    FaRoute,
+    FaArrowAltCircleRight,
+    FaUserFriends,
+    FaSuitcase,
+    FaTelegramPlane,
+    FaTicketAlt,
+    FaWallet
+} from 'react-icons/fa';
+import {BiDotsHorizontalRounded} from 'react-icons/bi'
+
 export const routes = [
     {
         id: 1,

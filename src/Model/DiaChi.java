@@ -16,5 +16,4 @@ public class DiaChi implements Serializable {
         this.tinh=tinh;
         this.quocgia=quocgia;
     }
-    
 }

@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class testConn {
     public static void main(String[] args) {
-        String host ="localhos";
+        String host ="localhost";
         String port ="5432";
-        String dbName = "postgres";
+        String dbName = "pttkQlmb";
         String user="postgres";
         String pass="Daucham@";
         String dburl = "jdbc:postgres://"+host+":"+port+"/"+dbName+"?loggerLevel=OFF";

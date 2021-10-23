@@ -1,4 +1,7 @@
 import Connection.Conn;
+import DAO.DiaChiDAO;
+import DAO.TestDAO;
+import Model.DiaChi;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,17 +11,19 @@ import java.sql.SQLException;
 public class main {
     public static void main(String[] args) throws SQLException {
         // make a connection for all.
-        Conn app = new Conn();
-        Connection conn = app.connect();
 
         // example
-        PreparedStatement pstmt = null;
-        pstmt = conn.prepareStatement("select * from tblDiaChi;");
-        ResultSet ret = null;
-        ret = pstmt.executeQuery();
-        while (ret.next()) {
-            System.out.println(ret.getString("huyen"));
+        DiaChiDAO diaChiDAO = new DiaChiDAO();
+        for (DiaChi i : diaChiDAO.gellAll()) {
+            System.out.println(i.getId() + i.getXa());
         }
-        ret.close();
+//        DiaChi d = new DiaChi(5, "12", "12", "12", "123");
+//        diaChiDAO.create(d);
+//        for (DiaChi i : diaChiDAO.gellAll()) {
+//            System.out.println(i.getId() + i.getXa());
+//        }
+        DiaChi x = (DiaChi) diaChiDAO.read(2);
+        System.out.println(x.getXa()+x.getHuyen());
+
     }
 }

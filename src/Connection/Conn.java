@@ -8,12 +8,9 @@ public class Conn {
     private final String user = "postgres";
     private final String password = "Daucham@";
 
-    /**
-     * Connect to the PostgreSQL database
-     *
-     * @return a Connection object
-     */
-    public Connection connect() {
+    private static Conn conn = null;
+
+    public Connection getConnection() {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
@@ -24,5 +21,10 @@ public class Conn {
 
         return conn;
     }
-
+    public static Conn getInstance(){
+        if(conn == null){
+            conn = new Conn();
+        }
+        return conn;
+    }
 }

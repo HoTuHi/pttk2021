@@ -11,7 +11,7 @@ public interface DAO<T> {
 
     void create(T t);
 
-    void read(T t);
+    T read(int t);
 
     void update(T t);
 

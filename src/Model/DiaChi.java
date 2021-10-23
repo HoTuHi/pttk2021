@@ -16,4 +16,28 @@ public class DiaChi implements Serializable {
         this.tinh=tinh;
         this.quocgia=quocgia;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getXa() {
+        return xa;
+    }
+
+    public String getHuyen() {
+        return huyen;
+    }
+
+    public String getTinh() {
+        return tinh;
+    }
+
+    public String getQuocgia() {
+        return quocgia;
+    }
+
+    public int getDma() {
+        return dma;
+    }
 }

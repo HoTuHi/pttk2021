@@ -1,7 +1,6 @@
 package DAO;
 
 import Model.TestModel;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +32,8 @@ public class TestDAO implements DAO<TestModel> {
     }
 
     @Override
-    public void read(TestModel te) {
-
+    public TestModel read(int te) {
+        return null;
     }
 
     @Override

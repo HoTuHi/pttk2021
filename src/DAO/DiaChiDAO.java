@@ -99,10 +99,10 @@ public class DiaChiDAO implements DAO {
             ptmt = conn.prepareStatement(stringQuery);
             ptmt.setInt(1, 2);
             resultSet = ptmt.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 d = new DiaChi(resultSet.getInt("id"), resultSet.getString("xa"), resultSet.getString("huyen"), resultSet.getString("tinh"), resultSet.getString("quocgia"));
             }
-             return d;
+            return d;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -124,21 +124,22 @@ public class DiaChiDAO implements DAO {
 
     @Override
     public void update(Object o) {
-//        DiaChi d = (DiaChi) o;
-//        String stringQuery = "UPDATE tbldiachi SET xa=?,huyen=?,tinh=?,quocgia=? WHERE id=?";
-//        conn = getConnection();
-//        try {
-//            ptmt = conn.prepareStatement(stringQuery);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        ptmt.setString(1, d.getXa());
-//        ptmt.setString(2, d.getHuyen());
-//        ptmt.setString(3, d.getTinh());
-//        ptmt.setString(4, d.getQuocgia());
-//        ptmt.setInt(5, d.getId());
-//        ptmt.executeUpdate();
-//        System.out.println("Successfully");
+        DiaChi d = (DiaChi) o;
+        String stringQuery = "UPDATE tbldiachi SET xa=?,huyen=?,tinh=?,quocgia=? WHERE id=?";
+        conn = getConnection();
+        try {
+            ptmt = conn.prepareStatement(stringQuery);
+            ptmt.setString(1, d.getXa());
+            ptmt.setString(2, d.getHuyen());
+            ptmt.setString(3, d.getTinh());
+            ptmt.setString(4, d.getQuocgia());
+            ptmt.setInt(5, d.getId());
+            ptmt.executeUpdate();
+            System.out.println("Successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override

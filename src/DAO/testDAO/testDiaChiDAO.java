@@ -21,5 +21,6 @@ public class testDiaChiDAO {
         System.out.println(x.toString());
         //delete
         diaChiDAO.delete(d);
+        diaChiDAO.update(new DiaChi(57, "thinh son", "tien du", "bacNinh", "NgheAn"));
     }
 }

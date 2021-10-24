@@ -5,9 +5,9 @@ import java.util.Optional;
 
 public interface DAO<T> {
 
-    List<T> gellAll();
-
     Optional<T> get(int id);
+
+    List<T> gellAll();
 
     void create(T t);
 

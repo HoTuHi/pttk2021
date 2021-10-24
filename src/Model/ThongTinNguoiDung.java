@@ -107,4 +107,7 @@ public class ThongTinNguoiDung implements Serializable {
     public static void setTtndma(int ttndma) {
         ThongTinNguoiDung.ttndma = ttndma;
     }
+    public String toString(){
+        return this.ho+" | "+this.ten;
+    }
 }

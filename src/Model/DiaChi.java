@@ -3,9 +3,9 @@ package Model;
 import java.io.Serializable;
 
 public class DiaChi implements Serializable {
-    int id;
-    String xa,huyen,tinh,quocgia;
-    int dma=10001;
+    private  int id;
+    private String xa,huyen,tinh,quocgia;
+    private int dma=10001;
     public DiaChi(){
         this.id=dma++;
     }
@@ -37,7 +37,10 @@ public class DiaChi implements Serializable {
         return quocgia;
     }
 
-    public int getDma() {
+    public static int getDma() {
         return dma;
+    }
+    public static int setDma(){
+        return DiaChi.setDma;
     }
 }

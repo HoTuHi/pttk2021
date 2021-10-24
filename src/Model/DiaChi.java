@@ -44,4 +44,7 @@ public class DiaChi implements Serializable {
     public void setDma(int dma) {
         this.dma = dma;
     }
+    public String toString(){
+        return  this.getId()+" | "+this.getXa()+" | "+this.getHuyen()+ " | "+this.getTinh()+" | "+this.getQuocgia();
+    }
 }

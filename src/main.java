@@ -14,9 +14,9 @@ public class main {
 
         // example
         DiaChiDAO diaChiDAO = new DiaChiDAO();
-        for (DiaChi i : diaChiDAO.gellAll()) {
-            System.out.println(i.getId() + i.getXa());
-        }
+//        for (DiaChi i : diaChiDAO.gellAll()) {
+//            System.out.println(i.getId() + i.getXa());
+//        }
 //        DiaChi d = new DiaChi(5, "12", "12", "12", "123");
 //        diaChiDAO.create(d);
 //        for (DiaChi i : diaChiDAO.gellAll()) {

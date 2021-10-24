@@ -8,16 +8,18 @@ public class ChuyenBay implements Serializable {
     private MayBay mayBay;
     private LichBay lichBay;
     private Timestamp timestamp;
+    private boolean tinhtrang;
     private static int cma=10000;
 
     public ChuyenBay() {
         this.id=cma++;
     }
 
-    public ChuyenBay(int id, MayBay mayBay, LichBay lichBay,Timestamp timestamp) {
+    public ChuyenBay(int id, MayBay mayBay, LichBay lichBay,boolean tinhtrang,Timestamp timestamp) {
         this.id = id;
         this.mayBay = mayBay;
         this.lichBay = lichBay;
+        this.tinhtrang= tinhtrang;
         this.timestamp=timestamp;
     }
 
@@ -43,6 +45,14 @@ public class ChuyenBay implements Serializable {
 
     public void setLichBay(LichBay lichBay) {
         this.lichBay = lichBay;
+    }
+
+    public boolean isTinhtrang() {
+        return tinhtrang;
+    }
+
+    public void setTinhtrang(boolean tinhtrang) {
+        this.tinhtrang = tinhtrang;
     }
 
     public Timestamp getTimestamp() {

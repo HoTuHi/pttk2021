@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class DiaChi implements Serializable {
     private  int id;
     private String xa,huyen,tinh,quocgia;
-    private int dma=10001;
+    private int dma=10000;
     public DiaChi(){
         this.id=dma++;
     }
@@ -37,10 +37,11 @@ public class DiaChi implements Serializable {
         return quocgia;
     }
 
-    public static int getDma() {
+    public int getDma() {
         return dma;
     }
-    public static int setDma(){
-        return DiaChi.setDma;
+
+    public void setDma(int dma) {
+        this.dma = dma;
     }
 }

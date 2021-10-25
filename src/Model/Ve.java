@@ -117,4 +117,21 @@ public class Ve implements Serializable {
     public void setHoaDon(HoaDon hoaDon) {
         this.hoaDon = hoaDon;
     }
+
+    @Override
+    public String toString() {
+        return "Ve{" +
+                "id=" + id +
+                ", diemDi=" + diemDi.getTinh() +
+                ", diemDen=" + diemDen.getTinh() +
+                ", hoTen='" + hoTen + '\'' +
+                ", thoiGianKhoiTao=" + thoiGianKhoiTao +
+                ", soHieuMayBay=" + soHieuMayBay +
+                ", hangVe=" + hangVe +
+                ", maSoGHe=" + maSoGHe +
+                ", thongTinNguoiDung=" + thongTinNguoiDung.getId() +
+                ", chuyenBay=" + chuyenBay.getId() +
+                ", hoaDon=" + hoaDon +
+                '}';
+    }
 }

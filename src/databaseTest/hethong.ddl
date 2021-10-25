@@ -2,45 +2,39 @@ CREATE TABLE tblDiaChi
 (
     id      SERIAL    NOT NULL,
     Xa      char(255),
-    huyen   char(255),
-    tinh    char(255) NOT NULL,
-    quocgia char(255) NOT NULL,
+    Huyen   char(255),
+    Tinh    char(255) NOT NULL,
+    Quocgia char(255) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblNguoiDung
 (
-    "-id"               SERIAL NOT NULL,
-    TenNguoiDung        int4   NOT NULL,
-    matkhau             int4   NOT NULL,
-    ngaykhoitao         date   NOT NULL,
-    QuyenID             int4   NOT NULL,
-    Tinhtrangid         int4   NOT NULL,
-    ThongtinNguoiDungID int4   NOT NULL,
-    PRIMARY KEY ("-id")
+    "id"               SERIAL NOT NULL,
+    TenNguoiDung        varchar   NOT NULL,
+    MatKhau             varchar   NOT NULL,
+    Quyen               int    NOT NULL,
+    Tinhtrang           int   NOT NULL,
+    ThongtinNguoiDungID int   NOT NULL,
+    ngaykhoitao         timestamp   NOT NULL,
+    PRIMARY KEY ("id")
 );
 CREATE TABLE tblThongtinNguoiDung
 (
     ID          SERIAL    NOT NULL,
-    ho          char(255) NOT NULL,
-    tendem      char(255) NOT NULL,
-    ngaysinh    int4      NOT NULL,
-    ten         char(255) NOT NULL,
-    email       char(255) NOT NULL,
-    sodienthoai char(255) NOT NULL,
-    tblDiaChiid int4      NOT NULL,
+    Ho          char(255) NOT NULL,
+    Tendem      char(255) NOT NULL,
+    Ngaysinh    DATE      NOT NULL,
+    Ten         char(255) NOT NULL,
+    Email       char(255) NOT NULL,
+    Sodienthoai char(255) NOT NULL,
+    tblDiaChiid int      NOT NULL,
     PRIMARY KEY (ID)
 );
 CREATE TABLE tblQuyen
 (
     ID    SERIAL NOT NULL,
-    Quyen int4   NOT NULL,
+    Quyen int   NOT NULL,
     PRIMARY KEY (ID)
-);
-CREATE TABLE tblTinhtrang
-(
-    id        SERIAL NOT NULL,
-    TInhtrang bytea  NOT NULL,
-    PRIMARY KEY (id)
 );
 CREATE TABLE tblMayBay
 (
@@ -53,77 +47,78 @@ CREATE TABLE tblMayBay
 );
 CREATE TABLE tblGhe
 (
-    loaighe     int4    NOT NULL,
+    id          int     NOT NULL,
+    loaighe     int    NOT NULL,
     maSoghe     char(4) NOT NULL UNIQUE,
-    tblMayBayid int4    NOT NULL UNIQUE,
+    tblMayBayid int    NOT NULL UNIQUE,
     PRIMARY KEY (maSoghe, tblMayBayid)
 );
 CREATE TABLE tblLichBay
 (
     id                 SERIAL    NOT NULL,
+    phothongtietkiem   float    NOT NULL,
+    phothongtieuchuan  float    NOT NULL,
+    thuonggiatieuchuan float    NOT NULL,
+    thuonggiacaocap    float    NOT NULL,
+    tblTuyenDuongBayid int      NOT NULL,
+    tblHeSoGioid       int      NOT NULL,
+    tblHeSoNgayid      int      NOT NULL,
+    tblBangGiaid       int      NOT NULL,
     thoigian           timestamp NOT NULL,
-    phothongtietkiem   float4    NOT NULL,
-    phothongtieuchuan  float4    NOT NULL,
-    thuonggiatieuchuan float4    NOT NULL,
-    thuonggiacaocap    float4    NOT NULL,
-    tblTuyenDuongBayid int4      NOT NULL,
-    tblHeSoGioid       int4      NOT NULL,
-    tblHeSoNgayid      int4      NOT NULL,
-    tblBangGiaid       int4      NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblTuyenDuongBay
 (
     id           SERIAL    NOT NULL,
-    tblDiaChiid  int4      NOT NULL,
-    tblDiaChiid2 int4      NOT NULL,
-    thoigian     timestamp NOT NULL,
+    tblDiaChiid  int        NOT NULL,
+    tblDiaChiid2 int        NOT NULL,
+    thoigian     float      NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblChuyenBay
 (
     id            SERIAL NOT NULL,
-    MayBayid      int4   NOT NULL,
-    LichBayid     int4   NOT NULL,
-    PhieuDatChoid int4   NOT NULL,
-    tblMayBayid   int4   NOT NULL,
-    tblLichBayid  int4   NOT NULL,
+    MayBayid      int   NOT NULL,
+    LichBayid     int   NOT NULL,
+    tblMayBayid   int   NOT NULL,
+    tblLichBayid  int   NOT NULL,
+    Tinhtrang     int   NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblBangGia
 (
     id                 SERIAL    NOT NULL,
-    phothongtietkiem   float4    NOT NULL,
-    phothongtieuchuan  float4    NOT NULL,
-    thuonggiatieuchuan float4    NOT NULL,
-    thuonggiacaocap    float4    NOT NULL,
+    phothongtietkiem   float    NOT NULL,
+    phothongtieuchuan  float    NOT NULL,
+    thuonggiatieuchuan float    NOT NULL,
+    thuonggiacaocap    float    NOT NULL,
     thoigian           timestamp NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblPhieuDatCho
 (
     id                     SERIAL    NOT NULL,
-    thoigian               timestamp NOT NULL,
-    tonggiacuave           int4      NOT NULL,
-    LoaiVeid               int4      NOT NULL,
     tblGhemaSoghe          char(4)   NOT NULL,
-    tblGhetblMayBayid      int4      NOT NULL,
-    tblVeid                int4      NOT NULL,
-    tblThongtinNguoiDungID int4      NOT NULL,
-    tblHoaDonid            int4,
+    tblGhetblMayBayid      int      NOT NULL,
+    tblVeid                int      NOT NULL,
+    tblThongtinNguoiDungID int      NOT NULL,
+    tblHoaDonid            int,
+    LoaiVeid               int      NOT NULL,
+    tonggiacuave           int      NOT NULL,
+    thoigian               timestamp NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblLoaiVe
 (
     id  SERIAL NOT NULL,
-    ten int4   NOT NULL,
+    ten varchar   NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblHoaDon
 (
     id         SERIAL    NOT NULL,
     hoten      char(255) NOT NULL,
-    tonghoadon int4      NOT NULL,
+    tonghoadon int      NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblVe
@@ -131,36 +126,34 @@ CREATE TABLE tblVe
     id                     SERIAL    NOT NULL,
     diemdi                 char(255) NOT NULL,
     diemden                char(255) NOT NULL,
-    hoten                  int4      NOT NULL,
-    thoigian               timestamp NOT NULL,
-    sohieumaybay           int4      NOT NULL,
-    hangve                 int4      NOT NULL,
+    hoten                  char(255) NOT NULL,
+    sohieumaybay           int      NOT NULL,
+    hangve                 int      NOT NULL,
     masoghe                char(4)   NOT NULL,
-    tblThongtinNguoiDungID int4      NOT NULL,
-    ChuyenBayid            int4      NOT NULL,
-    tblHoaDonid            int4      NOT NULL,
+    tblThongtinNguoiDungID int      NOT NULL,
+    ChuyenBayid            int      NOT NULL,
+    tblHoaDonid            int      NOT NULL,
+    thoigian               timestamp NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblHeSoGio
 (
     id     SERIAL    NOT NULL,
-    ghichu char(255) NOT NULL,
     gio    timestamp NOT NULL,
-    heso   float4    NOT NULL,
+    heso   float    NOT NULL,
+    ghichu char(255) NOT NULL,
     PRIMARY KEY (id)
 );
 CREATE TABLE tblHeSoNgay
 (
     id     SERIAL    NOT NULL,
-    ghichu char(255) NOT NULL,
     ngay   date      NOT NULL,
-    heso   float4    NOT NULL,
+    heso   float    NOT NULL,
+    ghichu char(255) NOT NULL,
     PRIMARY KEY (id)
 );
 ALTER TABLE tblNguoiDung
     ADD CONSTRAINT FKtblNguoiDu308713 FOREIGN KEY (QuyenID) REFERENCES tblQuyen (ID);
-ALTER TABLE tblNguoiDung
-    ADD CONSTRAINT FKtblNguoiDu329675 FOREIGN KEY (Tinhtrangid) REFERENCES tblTinhtrang (id);
 ALTER TABLE tblPhieuDatCho
     ADD CONSTRAINT FKtblPhieuDa751462 FOREIGN KEY (LoaiVeid) REFERENCES tblLoaiVe (id);
 ALTER TABLE tblNguoiDung

@@ -17,7 +17,6 @@ public class testDiaChiDAO {
         diaChiDAO.create(d);
         System.out.println(d.toString());
         // read by id - done
-        System.out.println("find");
         DiaChi x = (DiaChi) diaChiDAO.read(2);
         System.out.println(x.toString());
         //delete

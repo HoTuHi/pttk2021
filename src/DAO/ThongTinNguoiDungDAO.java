@@ -48,7 +48,7 @@ public class ThongTinNguoiDungDAO implements DAO {
             ptmt.setString(1, t.getHo());
             ptmt.setString(2, t.getTen_dem());
             ptmt.setString(3, t.getTen());
-            ptmt.setDate(4, (Date) t.getNgaysinh());
+            ptmt.setTimestamp(4,  t.getNgaysinh());
             ptmt.setString(5, t.getEmail());
             ptmt.setString(6, t.getSdt());
             ptmt.setTimestamp(7, t.getKhoitao());
@@ -67,25 +67,25 @@ public class ThongTinNguoiDungDAO implements DAO {
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(stringQuery);
-            ptmt.setInt(1,o);
+            ptmt.setInt(1, o);
             resultSet = ptmt.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 t.setId(resultSet.getInt("id"));
                 t.setHo(resultSet.getString("ho"));
                 t.setTen_dem(resultSet.getString("ho"));
                 t.setTen(resultSet.getString("ho"));
-                t.setNgaysinh(resultSet.getDate("ngaysinh"));
+                t.setNgaysinh(resultSet.getTimestamp("ngaysinh"));
                 t.setEmail(resultSet.getString("email"));
                 t.setSdt(resultSet.getString("sdt"));
                 t.setKhoitao(resultSet.getTimestamp("khoitao"));
-                t.setDiaChi(new DiaChi(resultSet.getInt("tbldiachiid"),"","","",""));
+                t.setDiaChi(new DiaChi(resultSet.getInt("tbldiachiid"), "", "", "", ""));
             }
-            return  t;
+            return t;
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
+        return t;
     }
 
     @Override

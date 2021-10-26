@@ -70,15 +70,4 @@ public class ChuyenBay implements Serializable {
     public static void setCma(int cma) {
         ChuyenBay.cma = cma;
     }
-
-    @Override
-    public String toString() {
-        return "ChuyenBay{" +
-                "id=" + id +
-                ", mayBay=" + mayBay +
-                ", lichBay=" + lichBay +
-                ", timestamp=" + timestamp +
-                ", tinhtrang=" + tinhtrang +
-                '}';
-    }
 }

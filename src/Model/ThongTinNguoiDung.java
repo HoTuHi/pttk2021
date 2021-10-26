@@ -6,17 +6,18 @@ import java.util.Date;
 
 public class ThongTinNguoiDung implements Serializable {
     private int id;
-    private String ho,ten_dem,ten;
-    private Date ngaysinh;
-    private String email,sdt;
+    private String ho, ten_dem, ten;
+    private Timestamp ngaysinh;
+    private String email, sdt;
     private Timestamp khoitao;
     private DiaChi diaChi;
-    private static int ttndma=100000;
+    private static int ttndma = 100000;
+
     public ThongTinNguoiDung() {
-        this.id=ttndma++;
+        this.id = ttndma++;
     }
 
-    public ThongTinNguoiDung(int id, String ho, String ten_dem, String ten, Date ngaysinh, String email, String sdt, Timestamp khoitao, DiaChi diaChi) {
+    public ThongTinNguoiDung(int id, String ho, String ten_dem, String ten, Timestamp ngaysinh, String email, String sdt, Timestamp khoitao, DiaChi diaChi) {
         this.id = id;
         this.ho = ho;
         this.ten_dem = ten_dem;
@@ -60,11 +61,11 @@ public class ThongTinNguoiDung implements Serializable {
         this.ten = ten;
     }
 
-    public Date getNgaysinh() {
+    public Timestamp getNgaysinh() {
         return ngaysinh;
     }
 
-    public void setNgaysinh(Date ngaysinh) {
+    public void setNgaysinh(Timestamp ngaysinh) {
         this.ngaysinh = ngaysinh;
     }
 
@@ -107,7 +108,8 @@ public class ThongTinNguoiDung implements Serializable {
     public static void setTtndma(int ttndma) {
         ThongTinNguoiDung.ttndma = ttndma;
     }
-    public String toString(){
-        return this.ho+" | "+this.ten;
+
+    public String toString() {
+        return this.ho + " | " + this.ten;
     }
 }

@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Conn {
 
-    private final String url = "jdbc:postgresql://localhost/pttkQlmb";
+    private final String url = "jdbc:postgresql://localhost/postgres";
     private final String user = "postgres";
-    private final String password = "Daucham@";
+    private final String password = "namnt091120";
 
     private static Conn conn = null;
 

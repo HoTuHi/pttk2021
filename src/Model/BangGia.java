@@ -69,4 +69,15 @@ public class BangGia implements Serializable {
     public static void setBma(int bma) {
         BangGia.bma = bma;
     }
+
+    @Override
+    public String toString() {
+        return "BangGia{" +
+                "id=" + id +
+                ", phothongtietkiem=" + phothongtietkiem +
+                ", phothongtieuchuan=" + phothongtieuchuan +
+                ", thuonggiatieuchuan=" + thuonggiatieuchuan +
+                ", thuonggiacaocap=" + thuonggiacaocap +
+                '}';
+    }
 }

@@ -1,4 +1,7 @@
-package Model;
+package Model.Hi;
+
+import Model.Nam.LichBay;
+import Model.Nam.MayBay;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

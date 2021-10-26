@@ -1,8 +1,7 @@
 package DAO.testDAO;
 
-import DAO.BanggiaDAO;
-import Model.BangGia;
-import Model.DiaChi;
+import DAO.Hi.BanggiaDAO;
+import Model.Hi.BangGia;
 
 public class testBanggiaDAO {
     public static void main(String[] args) {

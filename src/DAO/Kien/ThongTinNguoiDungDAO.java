@@ -1,10 +1,10 @@
-package DAO;
+package DAO.Kien;
 
 import Connection.Conn;
-import Model.DiaChi;
-import Model.ThongTinNguoiDung;
+import DAO.DAO;
+import Model.Hi.DiaChi;
+import Model.Kien.ThongTinNguoiDung;
 
-import javax.sound.midi.Soundbank;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

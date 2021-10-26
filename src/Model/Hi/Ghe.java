@@ -1,4 +1,6 @@
-package Model;
+package Model.Hi;
+
+import Model.Nam.MayBay;
 
 import java.io.Serializable;
 

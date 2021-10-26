@@ -1,7 +1,8 @@
-package DAO;
+package DAO.Hi;
 
-import Model.BangGia;
 import Connection.Conn;
+import DAO.DAO;
+import Model.Hi.DiaChi;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class BanggiaDAO implements DAO{
+public class DiaChiDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "tblbanggia";
-    List<BangGia> bangGias = new ArrayList<>();
+    String tblName = "tbldiachi";
+    List<DiaChi> diaChis = new ArrayList<>();
 
-    public BanggiaDAO() {
+    public DiaChiDAO() {
 
     }
 
@@ -27,19 +28,22 @@ public class BanggiaDAO implements DAO{
         conn = Conn.getInstance().getConnection();
         return conn;
     }
+
     @Override
-    public List<BangGia> gellAll() {
+    public List<DiaChi> gellAll() {
+
         try {
             String querryString = "SELECT * from " + tblName;
             conn = getConnection();
             ptmt = conn.prepareStatement(querryString);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                BangGia b = new BangGia(resultSet.getInt("id"), resultSet.getFloat("phothongtietkiem"), resultSet.getFloat("phothongtieuchuan"), resultSet.getFloat("thuonggiatieuchuan"), resultSet.getFloat("thuonggiacaocap"));
-                bangGias.add(b);
+                DiaChi d = new DiaChi(resultSet.getInt("id"), resultSet.getString("xa"), resultSet.getString("huyen"), resultSet.getString("tinh"), resultSet.getString("quocgia"));
+                diaChis.add(d);
+//                System.out.println(d.getId()+" | "+d.getXa()+" | "+d.getHuyen()+ " | "+d.getTinh()+" | "+d.getQuocgia());
 
             }
-            return bangGias;
+            return diaChis;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -58,29 +62,29 @@ public class BanggiaDAO implements DAO{
             }
 
         }
-        return bangGias;
+        return diaChis;
     }
 
     @Override
     public Optional get(int id) {
-        return bangGias.stream().filter(u -> u.getId() == id).findFirst();
+        return diaChis.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public void create(Object o) {
         try {
-            BangGia b = (BangGia) o;
-            String stringQuerry = "INSERT INTO tblbanggia(phothongtietkiem,phothongtieuchuan,thuonggiatieuchuan,thuonggiacaocap) VALUES (?,?,?,?)";
+            DiaChi d = (DiaChi) o;
+            String stringQuerry = "INSERT INTO tbldiachi(xa,huyen,tinh,quocgia) VALUES (?,?,?,?)";
             conn = getConnection();
 
             ptmt = conn.prepareStatement(stringQuerry);
 //            ptmt.setString(1, d.getId());
-            ptmt.setFloat(1, b.getPhothongtietkiem());
-            ptmt.setFloat(2, b.getPhothongtieuchuan());
-            ptmt.setFloat(3, b.getThuonggiatieuchuan());
-            ptmt.setFloat(4,b.getThuonggiacaocap());
+            ptmt.setString(1, d.getXa());
+            ptmt.setString(2, d.getHuyen());
+            ptmt.setString(3, d.getTinh());
+            ptmt.setString(4, d.getHuyen());
             ptmt.executeUpdate();
-            System.out.println("Banggia Added Successfully");
+            System.out.println("DiaChi Added Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,16 +94,16 @@ public class BanggiaDAO implements DAO{
     @Override
     public Object read(int o) {
         try {
-            BangGia b = null;
-            String stringQuery = "SELECT * FROM tblbanggia WHERE id=?";
+            DiaChi d = null;
+            String stringQuery = "SELECT * FROM tbldiachi WHERE id=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(stringQuery);
             ptmt.setInt(1, 2);
             resultSet = ptmt.executeQuery();
-            while (resultSet.next()){
-                b = new BangGia(resultSet.getInt("id"), resultSet.getFloat("phothongtietkiem"), resultSet.getFloat("phothongtieuchuan"), resultSet.getFloat("thuonggiatieuchuan"), resultSet.getFloat("thuonggiacaocap"));
+            while (resultSet.next()) {
+                d = new DiaChi(resultSet.getInt("id"), resultSet.getString("xa"), resultSet.getString("huyen"), resultSet.getString("tinh"), resultSet.getString("quocgia"));
             }
-            return b;
+            return d;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -121,13 +125,29 @@ public class BanggiaDAO implements DAO{
 
     @Override
     public void update(Object o) {
-        System.out.println("cho fe");
+        DiaChi d = (DiaChi) o;
+        String stringQuery = "UPDATE tbldiachi SET xa=?,huyen=?,tinh=?,quocgia=? WHERE id=?";
+        conn = getConnection();
+        try {
+            ptmt = conn.prepareStatement(stringQuery);
+            ptmt.setString(1, d.getXa());
+            ptmt.setString(2, d.getHuyen());
+            ptmt.setString(3, d.getTinh());
+            ptmt.setString(4, d.getQuocgia());
+            ptmt.setInt(5, d.getId());
+            ptmt.executeUpdate();
+            System.out.println("Successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
+
     @Override
     public void delete(Object o) {
         try {
-            BangGia d = (BangGia) o;
-            String stringQuery = "DELETE FROM tblbanggia WHERE id=?";
+            DiaChi d = (DiaChi) o;
+            String stringQuery = "DELETE FROM tbldiachi WHERE id=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(stringQuery);
             ptmt.setInt(1, d.getId());

@@ -1,7 +1,8 @@
-package DAO;
+package DAO.Hi;
 
 
-import Model.ChuyenBay;
+import DAO.DAO;
+import Model.Hi.ChuyenBay;
 import Connection.Conn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class ChuyenBayDAO implements DAO{
+public class ChuyenBayDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;

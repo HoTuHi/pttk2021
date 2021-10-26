@@ -1,4 +1,6 @@
-package Model;
+package Model.Kien;
+
+import Model.Hi.DiaChi;
 
 import java.io.Serializable;
 

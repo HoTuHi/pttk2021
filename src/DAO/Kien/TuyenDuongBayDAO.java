@@ -1,8 +1,9 @@
-package DAO;
+package DAO.Kien;
 
+import DAO.DAO;
+import Model.Hi.DiaChi;
+import Model.Kien.TuyenDuongBay;
 import Connection.Conn;
-import Model.DiaChi;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,14 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DiaChiDAO implements DAO {
-    Connection conn = null;
+public class TuyenDuongBayDAO implements DAO {
+    Connection conn=null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "tbldiachi";
-    List<DiaChi> diaChis = new ArrayList<>();
+    String tblName = "tbltuyenduongbay";
+    List<TuyenDuongBay> tuyenDuongBays = new ArrayList<>();
 
-    public DiaChiDAO() {
+    public TuyenDuongBayDAO() {
 
     }
 
@@ -27,22 +28,20 @@ public class DiaChiDAO implements DAO {
         conn = Conn.getInstance().getConnection();
         return conn;
     }
-
     @Override
-    public List<DiaChi> gellAll() {
-
+    public List<TuyenDuongBay> gellAll() {
         try {
             String querryString = "SELECT * from " + tblName;
             conn = getConnection();
             ptmt = conn.prepareStatement(querryString);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                DiaChi d = new DiaChi(resultSet.getInt("id"), resultSet.getString("xa"), resultSet.getString("huyen"), resultSet.getString("tinh"), resultSet.getString("quocgia"));
-                diaChis.add(d);
+                TuyenDuongBay d = new TuyenDuongBay(resultSet.getInt("id"), resultSet.getObject("tinh",DiaChi.class), resultSet.getObject("tinh",DiaChi.class), resultSet.getFloat("thoigianbay"));
+                tuyenDuongBays.add(d);
 //                System.out.println(d.getId()+" | "+d.getXa()+" | "+d.getHuyen()+ " | "+d.getTinh()+" | "+d.getQuocgia());
 
             }
-            return diaChis;
+            return tuyenDuongBays;
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -61,48 +60,50 @@ public class DiaChiDAO implements DAO {
             }
 
         }
-        return diaChis;
+        return tuyenDuongBays;
     }
 
     @Override
     public Optional get(int id) {
-        return diaChis.stream().filter(u -> u.getId() == id).findFirst();
+        return tuyenDuongBays.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public void create(Object o) {
         try {
-            DiaChi d = (DiaChi) o;
-            String stringQuerry = "INSERT INTO tbldiachi(xa,huyen,tinh,quocgia) VALUES (?,?,?,?)";
+            TuyenDuongBay t = (TuyenDuongBay) o;
+            String stringQuerry = "INSERT INTO tbltuyenduongbay(diemdi,diemden,thoigianbay,tbldiemdi,tbldiemden) VALUES (?,?,?,?,?)";
             conn = getConnection();
 
             ptmt = conn.prepareStatement(stringQuerry);
 //            ptmt.setString(1, d.getId());
-            ptmt.setString(1, d.getXa());
-            ptmt.setString(2, d.getHuyen());
-            ptmt.setString(3, d.getTinh());
-            ptmt.setString(4, d.getHuyen());
+            ptmt.setString(1, t.getDiemdi().getTinh());
+            ptmt.setString(2, t.getDiemden().getTinh());
+            ptmt.setFloat(3, t.getThoigianbay());
+            ptmt.setInt(4,t.getDiemdi().getId());
+            ptmt.setInt(5,t.getDiemden().getId());
             ptmt.executeUpdate();
-            System.out.println("DiaChi Added Successfully");
+            System.out.println("TuyenDuongBay Added Successfully");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
-    public Object read(int o) {
+    public Object read(int t) {
         try {
-            DiaChi d = null;
-            String stringQuery = "SELECT * FROM tbldiachi WHERE id=?";
+            String querryString = "SELECT * FROM tbltuyenduongbay WHERE id=?";
             conn = getConnection();
-            ptmt = conn.prepareStatement(stringQuery);
-            ptmt.setInt(1, 2);
+            ptmt = conn.prepareStatement(querryString);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                d = new DiaChi(resultSet.getInt("id"), resultSet.getString("xa"), resultSet.getString("huyen"), resultSet.getString("tinh"), resultSet.getString("quocgia"));
+                TuyenDuongBay d = new TuyenDuongBay(resultSet.getInt("id"), resultSet.getObject("tinh",DiaChi.class), resultSet.getObject("tinh",DiaChi.class), resultSet.getFloat("thoigianbay"));
+                tuyenDuongBays.add(d);
+//                System.out.println(d.getId()+" | "+d.getXa()+" | "+d.getHuyen()+ " | "+d.getTinh()+" | "+d.getQuocgia());
+
             }
-            return d;
+            return tuyenDuongBays;
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } finally {
@@ -113,40 +114,26 @@ public class DiaChiDAO implements DAO {
                     ptmt.close();
                 if (conn != null)
                     conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
-        return null;
-
+        return tuyenDuongBays;
     }
 
     @Override
     public void update(Object o) {
-        DiaChi d = (DiaChi) o;
-        String stringQuery = "UPDATE tbldiachi SET xa=?,huyen=?,tinh=?,quocgia=? WHERE id=?";
-        conn = getConnection();
-        try {
-            ptmt = conn.prepareStatement(stringQuery);
-            ptmt.setString(1, d.getXa());
-            ptmt.setString(2, d.getHuyen());
-            ptmt.setString(3, d.getTinh());
-            ptmt.setString(4, d.getQuocgia());
-            ptmt.setInt(5, d.getId());
-            ptmt.executeUpdate();
-            System.out.println("Successfully");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        System.out.println("cho fe");
     }
 
     @Override
     public void delete(Object o) {
         try {
-            DiaChi d = (DiaChi) o;
-            String stringQuery = "DELETE FROM tbldiachi WHERE id=?";
+            TuyenDuongBay d = (TuyenDuongBay) o;
+            String stringQuery = "DELETE FROM tbltuyenduongbay WHERE id=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(stringQuery);
             ptmt.setInt(1, d.getId());
@@ -154,6 +141,6 @@ public class DiaChiDAO implements DAO {
             System.out.println("Successfully");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
     }
+}
 }

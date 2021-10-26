@@ -1,4 +1,9 @@
-package Model;
+package Model.Nam;
+
+import Model.Hi.BangGia;
+import Model.Hi.HeSoGio;
+import Model.Hi.HeSoNgay;
+import Model.Kien.TuyenDuongBay;
 
 import java.io.Serializable;
 import java.sql.Date;

@@ -1,4 +1,8 @@
-package Model;
+package Model.Kien;
+
+import Model.Hi.ChuyenBay;
+import Model.Hi.DiaChi;
+import Model.Nam.HoaDon;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -16,7 +20,7 @@ public class Ve implements Serializable {
     private ChuyenBay chuyenBay;
     private HoaDon hoaDon;
 
-    public Ve(int id, DiaChi diemDi, DiaChi diemDen, String hoTen, Timestamp thoiGianKhoiTao, int soHieuMayBay, int hangVe, int maSoGHe, ThongTinNguoiDung thongTinNguoiDung, Model.ChuyenBay chuyenBay, HoaDon hoaDon) {
+    public Ve(int id, DiaChi diemDi, DiaChi diemDen, String hoTen, Timestamp thoiGianKhoiTao, int soHieuMayBay, int hangVe, int maSoGHe, ThongTinNguoiDung thongTinNguoiDung, ChuyenBay chuyenBay, HoaDon hoaDon) {
         this.id = id;
         this.diemDi = diemDi;
         this.diemDen = diemDen;

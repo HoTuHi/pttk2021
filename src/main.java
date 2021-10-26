@@ -1,11 +1,6 @@
-import Connection.Conn;
-import DAO.DiaChiDAO;
-import DAO.TestDAO;
-import Model.DiaChi;
+import DAO.Hi.DiaChiDAO;
+import Model.Hi.DiaChi;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class main {

@@ -1,10 +1,8 @@
-package DAO;
+package DAO.Kien;
 
-import Model.DiaChi;
-import Model.Quyen;
+import DAO.DAO;
+import Model.Kien.Quyen;
 import Connection.Conn;
-import Model.TuyenDuongBay;
-import Model.Ve;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class QuyenDAO implements DAO{
+public class QuyenDAO implements DAO {
 
     Connection conn=null;
     PreparedStatement ptmt = null;

@@ -1,7 +1,7 @@
 package DAO.testDAO;
 
-import DAO.DiaChiDAO;
-import Model.DiaChi;
+import DAO.Hi.DiaChiDAO;
+import Model.Hi.DiaChi;
 
 import java.sql.SQLException;
 

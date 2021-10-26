@@ -1,7 +1,12 @@
-package DAO;
+package DAO.Kien;
 
-import Model.*;
 import Connection.Conn;
+import DAO.DAO;
+import Model.Hi.ChuyenBay;
+import Model.Hi.DiaChi;
+import Model.Kien.ThongTinNguoiDung;
+import Model.Kien.Ve;
+import Model.Nam.HoaDon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

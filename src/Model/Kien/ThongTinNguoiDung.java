@@ -1,8 +1,9 @@
-package Model;
+package Model.Kien;
+
+import Model.Hi.DiaChi;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class ThongTinNguoiDung implements Serializable {
     private int id;

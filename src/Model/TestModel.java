@@ -1,8 +1,8 @@
 package Model;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 public class TestModel {
 
@@ -47,7 +47,14 @@ public class TestModel {
         this.title = resultSet.getString("title");
         this.value = resultSet.getInt("value");
     }
-
+    public PreparedStatement prepareQuery(PreparedStatement ptmt,boolean flag) throws SQLException {
+        ptmt.setString(1,this.getTitle());
+        ptmt.setInt(2,this.getValue());
+        if(flag){
+            ptmt.setInt(3,this.getId());
+        }
+        return ptmt;
+    }
     @Override
     public String toString() {
         return "TestModel{" +

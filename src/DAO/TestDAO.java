@@ -17,7 +17,7 @@ public class TestDAO implements DAO<TestModel> {
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
     String tblName = "test";
-    List<TestModel> testModels = new ArrayList<>();
+    List<TestModel> testModels = null;
 
 
     private Connection getConnection() {
@@ -28,8 +28,9 @@ public class TestDAO implements DAO<TestModel> {
 
     @Override
     public List<TestModel> gellAll() {
+        testModels = new ArrayList<>();
         try {
-            String querryString = "SELECT * from test";
+            String querryString = "SELECT * from test ORDER BY id";
             conn = getConnection();
             ptmt = conn.prepareStatement(querryString);
             resultSet = ptmt.executeQuery();
@@ -56,10 +57,8 @@ public class TestDAO implements DAO<TestModel> {
         String stringQuery = "INSERT INTO test(title,value) VALUES(?,?)";
         conn = getConnection();
         try {
-            ptmt = conn.prepareStatement(stringQuery);
-            ptmt.setString(1,t.getTitle());
-            ptmt.setInt(2,t.getValue());
-            ptmt.executeUpdate();
+            ptmt = conn.prepareStatement(stringQuery, ptmt.RETURN_GENERATED_KEYS);
+            t.prepareQuery(ptmt,false).executeUpdate();
             System.out.println("success");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -69,15 +68,50 @@ public class TestDAO implements DAO<TestModel> {
 
     @Override
     public TestModel read(int te) {
-        return null;
+        TestModel testModel = new TestModel();
+        try {
+            String querryString = "SELECT * from test WHERE id=?";
+            conn = getConnection();
+            ptmt = conn.prepareStatement(querryString);
+            ptmt.setInt(1,te);
+            resultSet = ptmt.executeQuery();
+            while (resultSet.next()) {
+                testModel.prepare(resultSet);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return testModel;
     }
 
     @Override
     public void update(TestModel te) {
+        TestModel t = (TestModel) te;
+        String stringQuery = "UPDATE test SET title=?,value=? WHERE id=?";
+        conn = getConnection();
+        try {
+            ptmt = conn.prepareStatement(stringQuery);
+            ptmt = t.prepareQuery(ptmt,true);
+            ptmt.executeUpdate();
+            System.out.println("success");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("F in update");
+        }
     }
+
 
     @Override
     public void delete(TestModel te) {
-        get(te.getId()).ifPresent(existUser -> testModels.remove(existUser));
+        try {
+            String querryString = "DELETE * from test WHERE id=?";
+            conn = getConnection();
+            ptmt = conn.prepareStatement(querryString);
+            ptmt.setInt(1, te.getId());
+            ptmt.executeUpdate();
+            System.out.println("success!");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

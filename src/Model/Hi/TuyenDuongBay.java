@@ -1,42 +1,48 @@
 package Model.Hi;
 
+import Model.Hi.DiaChi;
+import Model.Hi.model;
+
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ChuyenBay implements Serializable, model {
-    int id;
-    LichBay lichbay;
-    MayBay mayBay;
-    boolean tinhTrang;
+public class TuyenDuongBay implements Serializable, model {
+    private int id;
+    private DiaChi diemdi;
+    private DiaChi diemden;
+    private float thoiGianDiChuyen;
     double phoThongTietKiem;
     double phoThongTieuChuan;
     double thuongGiaTieuChuan;
     double thuongGiaCaoCap;
 
-    public ChuyenBay() {
+    public TuyenDuongBay() {
     }
 
-    public ChuyenBay(int id, LichBay lichbay, MayBay mayBay, boolean tinhTrang, double phoThongTietKiem, double phoThongTieuChuan, double thuongGiaTieuChuan, double thuongGiaCaoCap) {
+    public TuyenDuongBay(int id) {
         this.id = id;
-        this.lichbay = lichbay;
-        this.mayBay = mayBay;
-        this.tinhTrang = tinhTrang;
+    }
+
+    public TuyenDuongBay(int id, DiaChi diemdi, DiaChi diemden, float thoiGianDiChuyen, double phoThongTietKiem, double phoThongTieuChuan, double thuongGiaTieuChuan, double thuongGiaCaoCap) {
+        this.id = id;
+        this.diemdi = diemdi;
+        this.diemden = diemden;
+        this.thoiGianDiChuyen = thoiGianDiChuyen;
         this.phoThongTietKiem = phoThongTietKiem;
         this.phoThongTieuChuan = phoThongTieuChuan;
         this.thuongGiaTieuChuan = thuongGiaTieuChuan;
         this.thuongGiaCaoCap = thuongGiaCaoCap;
     }
 
-
     @Override
     public String toString() {
-        return "ChuyenBay{" +
+        return "TuyenDuongBay{" +
                 "id=" + id +
-                ", lichbay=" + lichbay +
-                ", mayBay=" + mayBay +
-                ", tinhTrang=" + tinhTrang +
+                ", diemdi=" + diemdi +
+                ", diemden=" + diemden +
+                ", thoiGianDiChuyen=" + thoiGianDiChuyen +
                 ", phoThongTietKiem=" + phoThongTietKiem +
                 ", phoThongTieuChuan=" + phoThongTieuChuan +
                 ", thuongGiaTieuChuan=" + thuongGiaTieuChuan +
@@ -47,9 +53,10 @@ public class ChuyenBay implements Serializable, model {
     @Override
     public void resultMap(ResultSet resultSet) throws SQLException {
         this.id = resultSet.getInt("id");
-        this.lichbay = new LichBay(resultSet.getInt("lichbayid"));
-        this.mayBay = new MayBay(resultSet.getInt("maybayid"));
-        this.tinhTrang = resultSet.getBoolean("tinhtrang");
+        this.diemdi = new DiaChi(resultSet.getInt("diemdi"));
+        this.diemden = new DiaChi(resultSet.getInt("diemden"));
+        ;
+        this.thoiGianDiChuyen = resultSet.getFloat("thoiGianDiChuyen");
         this.phoThongTietKiem = resultSet.getDouble("phoThongTietKiem");
         this.phoThongTieuChuan = resultSet.getDouble("phoThongTieuChuan");
         this.thuongGiaTieuChuan = resultSet.getDouble("thuongGiaTieuChuan");
@@ -58,29 +65,29 @@ public class ChuyenBay implements Serializable, model {
 
     @Override
     public PreparedStatement ptmtUpdate(PreparedStatement ptmt) throws SQLException {
-        // SET
-        ptmt.setInt(1, this.getLichbay().getId());
-        ptmt.setInt(2, this.getMayBay().getId());
-        ptmt.setBoolean(3,this.isTinhTrang());
-        ptmt.setDouble(4,this.getPhoThongTietKiem());
-        ptmt.setDouble(5,this.getPhoThongTieuChuan());
-        ptmt.setDouble(6,this.getThuongGiaTieuChuan());
-        ptmt.setDouble(7,this.getThuongGiaCaoCap());
-        // WHERE
-        ptmt.setInt(8,this.id);
+        //SET
+        ptmt.setInt(1, this.getDiemdi().getId());
+        ptmt.setInt(2, this.getDiemden().getId());
+        ptmt.setFloat(3, this.getThoiGianDiChuyen());
+        ptmt.setDouble(4, this.getPhoThongTietKiem());
+        ptmt.setDouble(5, this.getPhoThongTieuChuan());
+        ptmt.setDouble(6, this.getThuongGiaTieuChuan());
+        ptmt.setDouble(7, this.getThuongGiaCaoCap());
+        //WHERE
+        ptmt.setDouble(8, this.getId());
         return ptmt;
     }
 
     @Override
     public PreparedStatement ptmtCreate(PreparedStatement ptmt) throws SQLException {
-        // Create
-        ptmt.setInt(1, this.getLichbay().getId());
-        ptmt.setInt(2, this.getMayBay().getId());
-        ptmt.setBoolean(3,this.isTinhTrang());
-        ptmt.setDouble(4,this.getPhoThongTietKiem());
-        ptmt.setDouble(5,this.getPhoThongTieuChuan());
-        ptmt.setDouble(6,this.getThuongGiaTieuChuan());
-        ptmt.setDouble(7,this.getThuongGiaCaoCap());
+        //CREATE
+        ptmt.setInt(1, this.getDiemdi().getId());
+        ptmt.setInt(2, this.getDiemden().getId());
+        ptmt.setFloat(3, this.getThoiGianDiChuyen());
+        ptmt.setDouble(4, this.getPhoThongTietKiem());
+        ptmt.setDouble(5, this.getPhoThongTieuChuan());
+        ptmt.setDouble(6, this.getThuongGiaTieuChuan());
+        ptmt.setDouble(7, this.getThuongGiaCaoCap());
         return ptmt;
     }
 
@@ -92,28 +99,28 @@ public class ChuyenBay implements Serializable, model {
         this.id = id;
     }
 
-    public LichBay getLichbay() {
-        return lichbay;
+    public DiaChi getDiemdi() {
+        return diemdi;
     }
 
-    public void setLichbay(LichBay lichbay) {
-        this.lichbay = lichbay;
+    public void setDiemdi(DiaChi diemdi) {
+        this.diemdi = diemdi;
     }
 
-    public MayBay getMayBay() {
-        return mayBay;
+    public DiaChi getDiemden() {
+        return diemden;
     }
 
-    public void setMayBay(MayBay mayBay) {
-        this.mayBay = mayBay;
+    public void setDiemden(DiaChi diemden) {
+        this.diemden = diemden;
     }
 
-    public boolean isTinhTrang() {
-        return tinhTrang;
+    public float getThoiGianDiChuyen() {
+        return thoiGianDiChuyen;
     }
 
-    public void setTinhTrang(boolean tinhTrang) {
-        this.tinhTrang = tinhTrang;
+    public void setThoiGianDiChuyen(float thoiGianDiChuyen) {
+        this.thoiGianDiChuyen = thoiGianDiChuyen;
     }
 
     public double getPhoThongTietKiem() {

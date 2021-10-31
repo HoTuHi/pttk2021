@@ -2,7 +2,7 @@ package DAO.Kien;
 
 import DAO.DAO;
 import Model.Hi.DiaChi;
-import Model.Kien.TuyenDuongBay;
+import Model.Hi.TuyenDuongBay;
 import Connection.Conn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

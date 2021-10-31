@@ -1,6 +1,4 @@
-package Model.Nam;
-
-import Model.Hi.model;
+package Model.Hi;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
@@ -15,6 +13,10 @@ public class MayBay  implements Serializable, model {
     private static int mbma=10000;
     public MayBay() {
         this.id=mbma++;
+    }
+
+    public MayBay(int id) {
+        this.id = id;
     }
 
     public MayBay(int id, String loaimaybay, String hang, String sohieu, String ghichu, Timestamp timestamp) {
@@ -93,7 +95,7 @@ public class MayBay  implements Serializable, model {
     }
 
     @Override
-    public PreparedStatement Get(PreparedStatement ptmt) {
+    public PreparedStatement ptmtCreate(PreparedStatement ptmt) {
         return null;
     }
 }

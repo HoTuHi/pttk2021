@@ -104,7 +104,7 @@ public class TestDAO implements DAO<TestModel> {
     @Override
     public void delete(TestModel te) {
         try {
-            String querryString = "DELETE * from test WHERE id=?";
+            String querryString = "DELETE FROM test WHERE id=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(querryString);
             ptmt.setInt(1, te.getId());

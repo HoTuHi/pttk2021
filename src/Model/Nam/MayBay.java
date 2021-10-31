@@ -1,9 +1,14 @@
 package Model.Nam;
 
+import Model.Hi.model;
+
 import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
-public class MayBay  implements Serializable {
+public class MayBay  implements Serializable, model {
     private int id;
     private String loaimaybay,hang,sohieu,ghichu;
     private Timestamp timestamp;
@@ -75,5 +80,20 @@ public class MayBay  implements Serializable {
 
     public static void setMbma(int mbma) {
         MayBay.mbma = mbma;
+    }
+
+    @Override
+    public void resultMap(ResultSet resultSet) throws SQLException {
+
+    }
+
+    @Override
+    public PreparedStatement ptmtUpdate(PreparedStatement ptmt) {
+        return null;
+    }
+
+    @Override
+    public PreparedStatement Get(PreparedStatement ptmt) {
+        return null;
     }
 }

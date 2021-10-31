@@ -1,11 +1,12 @@
 package DAO.Hi;
 
 import DAO.DAO;
+import Model.Nam.LichBay;
 
 import java.util.List;
 import java.util.Optional;
 
-public class DiaChiDAO implements DAO {
+public class LichBayDAO implements DAO{
     @Override
     public Optional get(int id) {
         return Optional.empty();

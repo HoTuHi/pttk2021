@@ -1,8 +1,5 @@
 package DAO.testDAO;
 
-import DAO.Hi.BanggiaDAO;
-import Model.Hi.BangGia;
-
 public class testBanggiaDAO {
     public static void main(String[] args) {
         BanggiaDAO banggiaDAO= new BanggiaDAO();

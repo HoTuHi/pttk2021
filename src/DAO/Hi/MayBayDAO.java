@@ -9,12 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MayBayDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "MayBay";
+    String tblName = "maybay";
     List<MayBay> MayBays = null;
 
 

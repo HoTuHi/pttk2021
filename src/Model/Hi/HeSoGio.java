@@ -29,13 +29,13 @@ public class HeSoGio  implements Serializable,model {
     }
 
     @Override
-    public int  ptmtUpdate(PreparedStatement ptmt) throws SQLException {
+    public PreparedStatement  ptmtUpdate(PreparedStatement ptmt) throws SQLException {
         //SET
         ptmt.setDouble(1,this.getHeso());
         ptmt.setString(2,this.getGhichu());
         //WHERE
         ptmt.setInt(3,this.getId());
-        return ptmt.executeUpdate();
+        return ptmt;
     }
 
     @Override

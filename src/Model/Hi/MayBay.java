@@ -86,16 +86,31 @@ public class MayBay  implements Serializable, model {
 
     @Override
     public void resultMap(ResultSet resultSet) throws SQLException {
-
+        this.id=resultSet.getInt("id");
+        this.hang=resultSet.getString("hang");
+        this.loaimaybay=resultSet.getString("loai");
+        this.sohieu=resultSet.getString("sohieu");
+        this.ghichu=resultSet.getString("ghichu");
     }
 
     @Override
-    public PreparedStatement ptmtUpdate(PreparedStatement ptmt) {
-        return null;
+    public PreparedStatement ptmtUpdate(PreparedStatement ptmt) throws SQLException{
+        //SET
+        ptmt.setString(1,this.getHang());
+        ptmt.setString(2,this.getLoaimaybay());
+        ptmt.setString(3,this.getSohieu());
+        ptmt.setString(4,this.getGhichu());
+        //WHERE
+        ptmt.setInt(5,this.getId());
+        return ptmt;
     }
 
     @Override
-    public PreparedStatement ptmtCreate(PreparedStatement ptmt) {
-        return null;
+    public PreparedStatement ptmtCreate(PreparedStatement ptmt) throws SQLException{
+        ptmt.setString(1,this.getHang());
+        ptmt.setString(2,this.getLoaimaybay());
+        ptmt.setString(3,this.getSohieu());
+        ptmt.setString(4,this.getGhichu());
+        return ptmt;
     }
 }

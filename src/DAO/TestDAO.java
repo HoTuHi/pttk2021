@@ -1,7 +1,7 @@
 package DAO;
 
 import Model.TestModel;
-import Connection.Conn;
+import Conn.Conn;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,9 +1,8 @@
 package DAO.Hi;
 
-import Connection.Conn;
+import Conn.Conn;
 import DAO.DAO;
 import Model.Hi.LichBay;
-import Model.TestModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,18 +19,17 @@ public class LichBayDAO implements DAO {
     String tblName = "lichbay";
     List<LichBay> lichBays = null;
 
-    String getAllQuery = "SELECT * from lichbay ORDER BY id";
-    String createQuery = "INSERT INTO " + "lichbay(tuyenduongbayid,thoigiankhoihanh,hesogio,hesongay,khoitao) " + "VALUES(?,?,?,?,?)";
-    String updateQuery = "UPDATE lichbay SET tuyenduongbayid=?,thoigiankhoihanh=?, hesogio=?, hesongay=?,khoitao=? WHERE id=?";
-    String readQuery = "SELECT * from lichbay WHERE id=?";
-    String deleteQuery = "DELETE FROM lichbay WHERE id=?";
+    String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
+    String createQuery = "INSERT INTO " + tblName + "(tuyenduongbayid,thoigiankhoihanh,hesogio,hesongay,khoitao) " + "VALUES(?,?,?,?,?)";
+    String updateQuery = "UPDATE " + tblName + "SET tuyenduongbayid=?,thoigiankhoihanh=?, hesogio=?, hesongay=?,khoitao=? WHERE id=?";
+    String readQuery = "SELECT * from "+tblName+" WHERE id=?";
+    String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
 
     private Connection getConnection() {
         Connection conn;
         conn = Conn.getInstance().getConnection();
         return conn;
     }
-
 
     @Override
     public Optional get(int id) {
@@ -59,22 +57,10 @@ public class LichBayDAO implements DAO {
     @Override
     public void create(Object o) {
         LichBay t = (LichBay) o;
-
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
-            int affectedRows = t.ptmtCreate(ptmt).executeUpdate();
-            if (affectedRows == 0) {
-                throw new SQLException("Creating user failed, no rows affected.");
-            }
-
-            try (ResultSet generatedKeys = ptmt.getGeneratedKeys()) {
-                if (generatedKeys.next()) {
-                    t.setId(generatedKeys.getInt("id"));
-                } else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
-                }
-            }
+            t.ptmtCreate(ptmt).executeUpdate();
             new LogMessage(true, tblName);
         } catch (SQLException e) {
             new LogMessage(false, tblName);

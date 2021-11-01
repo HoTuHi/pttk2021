@@ -1,6 +1,6 @@
 package DAO.Kien;
 
-import Connection.Conn;
+import Conn.Conn;
 import DAO.DAO;
 import Model.Hi.DiaChi;
 import Model.Kien.ThongTinNguoiDung;

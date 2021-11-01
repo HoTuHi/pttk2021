@@ -1,10 +1,10 @@
 package DAO;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;
 
 public interface DAO<T> {
-
     Optional<T> get(int id);
 
     List<T> gellAll();

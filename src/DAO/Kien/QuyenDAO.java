@@ -2,7 +2,7 @@ package DAO.Kien;
 
 import DAO.DAO;
 import Model.Kien.Quyen;
-import Connection.Conn;
+import Conn.Conn;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

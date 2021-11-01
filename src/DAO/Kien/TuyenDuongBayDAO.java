@@ -3,7 +3,7 @@ package DAO.Kien;
 import DAO.DAO;
 import Model.Hi.DiaChi;
 import Model.Hi.TuyenDuongBay;
-import Connection.Conn;
+import Conn.Conn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

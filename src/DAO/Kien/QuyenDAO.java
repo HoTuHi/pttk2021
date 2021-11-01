@@ -1,7 +1,7 @@
 package DAO.Kien;
 
 import DAO.DAO;
-import Model.Kien.Quyen;
+import Model.Nam.Quyen;
 import Conn.Conn;
 
 import java.sql.Connection;

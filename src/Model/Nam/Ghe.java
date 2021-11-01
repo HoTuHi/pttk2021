@@ -1,4 +1,4 @@
-package Model.Kien;
+package Model.Nam;
 
 import Model.Hi.MayBay;
 

@@ -1,8 +1,9 @@
-package Model.Kien;
+package Model.Nam;
 
 import Model.Hi.ChuyenBay;
 import Model.Hi.DiaChi;
 import Model.Nam.HoaDon;
+import Model.Nam.ThongTinNguoiDung;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

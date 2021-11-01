@@ -1,8 +1,5 @@
 package Model.Nam;
 
-import Model.Kien.Quyen;
-import Model.Kien.ThongTinNguoiDung;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 

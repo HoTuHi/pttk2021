@@ -1,8 +1,9 @@
 package DAO.Hi;
 
-import DAO.DAO;
-import Model.Hi.DiaChi;
 import Conn.Conn;
+import DAO.DAO;
+import Model.Hi.Ghe;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,52 +12,51 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DiaChiDAO implements DAO {
+public class GheDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "diachi";
-    List<DiaChi> diaChis = null;
+    String tblName = "ghe";
+    List<Ghe> Ghes = null;
 
     String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
-    String createQuery = "INSERT INTO " + tblName + "(xa,huyen,tinh,quocgia) " + "VALUES(?,?,?,?)";
-    String updateQuery = "UPDATE diachi SET xa=?,huyen=?, tinh=?, quocgia=? WHERE id=?";
+    String createQuery = "INSERT INTO " + tblName + "(hang,ghichu,maybay) " + "VALUES(?,?,?)";
+    String updateQuery = "UPDATE ghe SET hang=?,ghichu=?, maybay=? WHERE id=?";
+   // NoChange
     String readQuery = "SELECT * from "+tblName+" WHERE id=?";
     String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
-
 
     private Connection getConnection() {
         Connection conn;
         conn = Conn.getInstance().getConnection();
         return conn;
     }
-
     @Override
     public Optional get(int id) {
-        return diaChis.stream().filter(u -> u.getId() == id).findFirst();
+        return Ghes.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public List gellAll() {
-        diaChis = new ArrayList<>();
+        Ghes = new ArrayList<>();
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(getAllQuery);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                DiaChi t = new DiaChi();
+                Ghe t = new Ghe();
                 t.resultMap(resultSet);
-                diaChis.add(t);
+                Ghes.add(t);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return diaChis;
+        return Ghes;
     }
 
     @Override
     public void create(Object o) {
-        DiaChi t = (DiaChi) o;
+        Ghe t = (Ghe) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
@@ -69,7 +69,7 @@ public class DiaChiDAO implements DAO {
 
     @Override
     public Object read(int t) {
-        DiaChi diaChi = new DiaChi();
+        Ghe Ghe = new Ghe();
         try {
 
             conn = getConnection();
@@ -77,17 +77,17 @@ public class DiaChiDAO implements DAO {
             ptmt.setInt(1, t);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                diaChi.resultMap(resultSet);
+                Ghe.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return diaChi;
+        return Ghe;
     }
 
     @Override
     public void update(Object o) {
-        DiaChi t = (DiaChi) o;
+        Ghe t = (Ghe) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(updateQuery);
@@ -102,7 +102,7 @@ public class DiaChiDAO implements DAO {
 
     @Override
     public void delete(Object o) {
-        DiaChi t = (DiaChi) o;
+        Ghe t = (Ghe) o;
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(deleteQuery);

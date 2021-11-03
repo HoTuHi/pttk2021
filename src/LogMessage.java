@@ -1,5 +1,3 @@
-package DAO;
-
 public class LogMessage {
     public LogMessage(boolean b, String tblName) {
         if (b==true){

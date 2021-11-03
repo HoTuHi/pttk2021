@@ -3,7 +3,7 @@ package DAO.Kien;
 import Conn.Conn;
 import DAO.DAO;
 import Model.Hi.DiaChi;
-import Model.Nam.ThongTinNguoiDung;
+import Model.Hi.ThongTinNguoiDung;
 
 import java.sql.*;
 import java.util.ArrayList;

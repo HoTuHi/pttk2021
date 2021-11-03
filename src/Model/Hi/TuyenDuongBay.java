@@ -1,7 +1,6 @@
 package Model.Hi;
 
-import Model.Hi.DiaChi;
-import Model.Hi.model;
+import Model.model;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;

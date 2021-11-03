@@ -1,11 +1,13 @@
 package Model.Hi;
 
+import Model.model;
+
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class HeSoGio  implements Serializable,model {
+public class HeSoGio  implements Serializable, model {
     private int id;
     private double heso;
     private String ghichu;

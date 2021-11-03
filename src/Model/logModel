@@ -1,3 +1,33 @@
 // stand.
 26/10/2021:
 Nam  : sửa testModel ( thêm thuộc tính ) ....  >>done;
+03/11/2021 : Hiep
+create table thongtinnguoidung
+(
+    id       integer     not null
+        constraint thongtinnguoidung_pkey
+            primary key,
+    ho       varchar(15) not null,
+    tendem   varchar(15) not null,
+    ten      varchar(25) not null,
+    ngaysinh timestamp,
+    email    varchar(25) not null,
+    sdt      char(10)    not null,
+    khoitao  timestamp   not null
+);
+create table phieudatcho
+(
+    id         integer   not null
+        constraint phieudatcho_pkey
+            primary key,
+    veid       integer   not null
+        constraint phieudatcho_veid_fkey
+            references ve,
+    mamaybayid integer   not null
+        constraint phieudatcho_maybay_id_fk
+            references maybay,
+    magheid    integer   not null
+        constraint phieudatcho_magheid_fkey
+            references ghe (id),
+    khoitao    timestamp not null
+);

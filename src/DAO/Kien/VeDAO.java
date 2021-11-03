@@ -4,7 +4,7 @@ import Conn.Conn;
 import DAO.DAO;
 import Model.Hi.ChuyenBay;
 import Model.Hi.DiaChi;
-import Model.Nam.ThongTinNguoiDung;
+import Model.Hi.ThongTinNguoiDung;
 import Model.Nam.Ve;
 import Model.Nam.HoaDon;
 

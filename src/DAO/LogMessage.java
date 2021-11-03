@@ -1,4 +1,4 @@
-package DAO.Hi;
+package DAO;
 
 public class LogMessage {
     public LogMessage(boolean b, String tblName) {

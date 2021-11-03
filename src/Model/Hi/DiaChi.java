@@ -1,11 +1,13 @@
 package Model.Hi;
 
+import Model.model;
+
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DiaChi implements Serializable,model {
+public class DiaChi implements Serializable, model {
     private  int id;
     private String xa,huyen,tinh,quocgia;
     public DiaChi(int id,String xa,String huyen,String tinh,String quocgia){

@@ -1,9 +1,6 @@
 package Model.Hi;
 
-import Model.Hi.HeSoGio;
-import Model.Hi.HeSoNgay;
-import Model.Hi.model;
-import Model.Hi.TuyenDuongBay;
+import Model.model;
 
 import java.io.Serializable;
 import java.sql.*;

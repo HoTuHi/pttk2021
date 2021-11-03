@@ -1,4 +1,4 @@
-package Model.Hi;
+package Model;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

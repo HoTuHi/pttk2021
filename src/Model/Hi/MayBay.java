@@ -1,5 +1,7 @@
 package Model.Hi;
 
+import Model.model;
+
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

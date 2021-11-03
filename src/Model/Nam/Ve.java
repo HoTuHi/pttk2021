@@ -2,8 +2,7 @@ package Model.Nam;
 
 import Model.Hi.ChuyenBay;
 import Model.Hi.DiaChi;
-import Model.Nam.HoaDon;
-import Model.Nam.ThongTinNguoiDung;
+import Model.Hi.ThongTinNguoiDung;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -20,6 +19,10 @@ public class Ve implements Serializable {
     private ThongTinNguoiDung thongTinNguoiDung;
     private ChuyenBay chuyenBay;
     private HoaDon hoaDon;
+
+    public Ve(int id) {
+        this.id = id;
+    }
 
     public Ve(int id, DiaChi diemDi, DiaChi diemDen, String hoTen, Timestamp thoiGianKhoiTao, int soHieuMayBay, int hangVe, int maSoGHe, ThongTinNguoiDung thongTinNguoiDung, ChuyenBay chuyenBay, HoaDon hoaDon) {
         this.id = id;

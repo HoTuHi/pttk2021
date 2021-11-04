@@ -1,6 +1,5 @@
-package Model.Hi;
+package Model.Roi;
 
-import Model.Hi.DiaChi;
 import Model.model;
 
 import java.io.Serializable;

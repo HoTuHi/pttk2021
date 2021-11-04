@@ -1,12 +1,12 @@
-package DAO.Kien;
+package DAO.Chua;
 
 import Conn.Conn;
 import DAO.DAO;
-import Model.Hi.ChuyenBay;
-import Model.Hi.DiaChi;
-import Model.Hi.ThongTinNguoiDung;
-import Model.Nam.Ve;
-import Model.Nam.HoaDon;
+import Model.Roi.ChuyenBay;
+import Model.Roi.DiaChi;
+import Model.Roi.ThongTinNguoiDung;
+import Model.Chua.Ve;
+import Model.Chua.HoaDon;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,14 +1,11 @@
-package Model.Hi;
+package Model.Roi;
 
-import Model.Hi.Quyen;
-import Model.Hi.ThongTinNguoiDung;
 import Model.model;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 public class NguoiDung implements Serializable, model {
     private int id;

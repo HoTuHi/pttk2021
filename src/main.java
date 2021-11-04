@@ -1,5 +1,5 @@
-import DAO.Hi.DiaChiDAO;
-import Model.Hi.DiaChi;
+import DAO.Roi.DiaChiDAO;
+import Model.Roi.DiaChi;
 
 import java.sql.SQLException;
 

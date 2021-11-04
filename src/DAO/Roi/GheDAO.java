@@ -1,8 +1,9 @@
-package DAO.Hi;
+package DAO.Roi;
 
-import DAO.DAO;
-import Model.Hi.MayBay;
 import Conn.Conn;
+import DAO.DAO;
+import Model.Roi.Ghe;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MayBayDAO implements DAO {
+public class GheDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "maybay";
-    List<MayBay> MayBays = null;
-
+    String tblName = "ghe";
+    List<Ghe> Ghes = null;
 
     String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
-    String createQuery = "INSERT INTO " + tblName + "(heso,ghichu) " + "VALUES(?,?)";
-    String updateQuery = "UPDATE MayBay SET heso= ?,ghichu=? WHERE id=?";
+    String createQuery = "INSERT INTO " + tblName + "(hang,ghichu,maybay) " + "VALUES(?,?,?)";
+    String updateQuery = "UPDATE ghe SET hang=?,ghichu=?, maybay=? WHERE id=?";
+   // NoChange
     String readQuery = "SELECT * from "+tblName+" WHERE id=?";
     String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
 
@@ -30,46 +31,45 @@ public class MayBayDAO implements DAO {
         conn = Conn.getInstance().getConnection();
         return conn;
     }
-
     @Override
     public Optional get(int id) {
-        return MayBays.stream().filter(u -> u.getId() == id).findFirst();
+        return Ghes.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public List gellAll() {
-        MayBays = new ArrayList<>();
+        Ghes = new ArrayList<>();
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(getAllQuery);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                MayBay t = new MayBay();
+                Ghe t = new Ghe();
                 t.resultMap(resultSet);
-                MayBays.add(t);
+                Ghes.add(t);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return MayBays;
+        return Ghes;
     }
 
     @Override
     public void create(Object o) {
-        MayBay t = (MayBay) o;
+        Ghe t = (Ghe) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
             t.ptmtCreate(ptmt).executeUpdate();
-            new LogMessage(true, tblName);
+            System.out.println("sc");
         } catch (SQLException e) {
-            new LogMessage(false, tblName);
+            System.out.println("f");
         }
     }
 
     @Override
     public Object read(int t) {
-        MayBay MayBay = new MayBay();
+        Ghe Ghe = new Ghe();
         try {
 
             conn = getConnection();
@@ -77,17 +77,17 @@ public class MayBayDAO implements DAO {
             ptmt.setInt(1, t);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                MayBay.resultMap(resultSet);
+                Ghe.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return MayBay;
+        return Ghe;
     }
 
     @Override
     public void update(Object o) {
-        MayBay t = (MayBay) o;
+        Ghe t = (Ghe) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(updateQuery);
@@ -102,7 +102,7 @@ public class MayBayDAO implements DAO {
 
     @Override
     public void delete(Object o) {
-        MayBay t = (MayBay) o;
+        Ghe t = (Ghe) o;
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(deleteQuery);

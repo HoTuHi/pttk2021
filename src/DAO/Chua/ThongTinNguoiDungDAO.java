@@ -1,9 +1,9 @@
-package DAO.Kien;
+package DAO.Chua;
 
 import Conn.Conn;
 import DAO.DAO;
-import Model.Hi.DiaChi;
-import Model.Hi.ThongTinNguoiDung;
+import Model.Roi.DiaChi;
+import Model.Roi.ThongTinNguoiDung;
 
 import java.sql.*;
 import java.util.ArrayList;

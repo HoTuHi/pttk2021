@@ -1,8 +1,8 @@
-package DAO.Hi;
+package DAO.Roi;
 
 import Conn.Conn;
 import DAO.DAO;
-import Model.Hi.TuyenDuongBay;
+import Model.Roi.HeSoNgay;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TuyenDuongBayDAO implements DAO {
+public class HeSoNgayDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "TuyenDuongBay";
-    List<TuyenDuongBay> TuyenDuongBays = null;
+    String tblName = "hesongay";
+    List<HeSoNgay> heSoNgays = null;
 
 
     String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
     String createQuery = "INSERT INTO " + tblName + "(heso,ghichu) " + "VALUES(?,?)";
-    String updateQuery = "UPDATE TuyenDuongBay SET heso= ?,ghichu=? WHERE id=?";
+    String updateQuery = "UPDATE hesongay SET heso= ?,ghichu=? WHERE id=?";
     String readQuery = "SELECT * from "+tblName+" WHERE id=?";
     String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
 
@@ -34,30 +34,30 @@ public class TuyenDuongBayDAO implements DAO {
 
     @Override
     public Optional get(int id) {
-        return TuyenDuongBays.stream().filter(u -> u.getId() == id).findFirst();
+        return heSoNgays.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public List gellAll() {
-        TuyenDuongBays = new ArrayList<>();
+        heSoNgays = new ArrayList<>();
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(getAllQuery);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                TuyenDuongBay t = new TuyenDuongBay();
+                HeSoNgay t = new HeSoNgay();
                 t.resultMap(resultSet);
-                TuyenDuongBays.add(t);
+                heSoNgays.add(t);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return TuyenDuongBays;
+        return heSoNgays;
     }
 
     @Override
     public void create(Object o) {
-        TuyenDuongBay t = (TuyenDuongBay) o;
+        HeSoNgay t = (HeSoNgay) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
@@ -70,7 +70,7 @@ public class TuyenDuongBayDAO implements DAO {
 
     @Override
     public Object read(int t) {
-        TuyenDuongBay TuyenDuongBay = new TuyenDuongBay();
+        HeSoNgay heSoNgay = new HeSoNgay();
         try {
 
             conn = getConnection();
@@ -78,17 +78,17 @@ public class TuyenDuongBayDAO implements DAO {
             ptmt.setInt(1, t);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                TuyenDuongBay.resultMap(resultSet);
+                heSoNgay.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return TuyenDuongBay;
+        return heSoNgay;
     }
 
     @Override
     public void update(Object o) {
-        TuyenDuongBay t = (TuyenDuongBay) o;
+        HeSoNgay t = (HeSoNgay) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(updateQuery);
@@ -103,7 +103,7 @@ public class TuyenDuongBayDAO implements DAO {
 
     @Override
     public void delete(Object o) {
-        TuyenDuongBay t = (TuyenDuongBay) o;
+        HeSoNgay t = (HeSoNgay) o;
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(deleteQuery);

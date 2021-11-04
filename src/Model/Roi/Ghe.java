@@ -1,6 +1,5 @@
-package Model.Hi;
+package Model.Roi;
 
-import Model.Hi.MayBay;
 import Model.model;
 
 import java.io.Serializable;

@@ -1,8 +1,8 @@
-package DAO.Hi;
+package DAO.Roi;
 
 import Conn.Conn;
 import DAO.DAO;
-import Model.Hi.HeSoNgay;
+import Model.Roi.LoaiVe;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,19 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class HeSoNgayDAO implements DAO {
+public class LoaiVeDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "hesongay";
-    List<HeSoNgay> heSoNgays = null;
-
+    String tblName = "LoaiVe";
+    List<LoaiVe> LoaiVes = null;
 
     String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
-    String createQuery = "INSERT INTO " + tblName + "(heso,ghichu) " + "VALUES(?,?)";
-    String updateQuery = "UPDATE hesongay SET heso= ?,ghichu=? WHERE id=?";
+    String createQuery = "INSERT INTO " + tblName + "(loai,ghichu) " + "VALUES(?,?)";
+    String updateQuery = "UPDATE LoaiVe SET loai=?,ghichu=? WHERE id=?";
+
+    // Default
     String readQuery = "SELECT * from "+tblName+" WHERE id=?";
     String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
+
 
     private Connection getConnection() {
         Connection conn;
@@ -34,43 +36,43 @@ public class HeSoNgayDAO implements DAO {
 
     @Override
     public Optional get(int id) {
-        return heSoNgays.stream().filter(u -> u.getId() == id).findFirst();
+        return LoaiVes.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public List gellAll() {
-        heSoNgays = new ArrayList<>();
+        LoaiVes = new ArrayList<>();
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(getAllQuery);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                HeSoNgay t = new HeSoNgay();
+                LoaiVe t = new LoaiVe();
                 t.resultMap(resultSet);
-                heSoNgays.add(t);
+                LoaiVes.add(t);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return heSoNgays;
+        return LoaiVes;
     }
 
     @Override
     public void create(Object o) {
-        HeSoNgay t = (HeSoNgay) o;
+        LoaiVe t = (LoaiVe) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
             t.ptmtCreate(ptmt).executeUpdate();
-            new LogMessage(true, tblName);
+            System.out.println("sc");
         } catch (SQLException e) {
-            new LogMessage(false, tblName);
+            System.out.println("f");
         }
     }
 
     @Override
     public Object read(int t) {
-        HeSoNgay heSoNgay = new HeSoNgay();
+        LoaiVe LoaiVe = new LoaiVe();
         try {
 
             conn = getConnection();
@@ -78,17 +80,17 @@ public class HeSoNgayDAO implements DAO {
             ptmt.setInt(1, t);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                heSoNgay.resultMap(resultSet);
+                LoaiVe.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return heSoNgay;
+        return LoaiVe;
     }
 
     @Override
     public void update(Object o) {
-        HeSoNgay t = (HeSoNgay) o;
+        LoaiVe t = (LoaiVe) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(updateQuery);
@@ -103,7 +105,7 @@ public class HeSoNgayDAO implements DAO {
 
     @Override
     public void delete(Object o) {
-        HeSoNgay t = (HeSoNgay) o;
+        LoaiVe t = (LoaiVe) o;
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(deleteQuery);

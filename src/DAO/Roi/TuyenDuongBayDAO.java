@@ -1,8 +1,8 @@
-package DAO.Hi;
+package DAO.Roi;
 
 import Conn.Conn;
 import DAO.DAO;
-import Model.Hi.LoaiVe;
+import Model.Roi.TuyenDuongBay;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,21 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class LoaiVeDAO implements DAO {
+public class TuyenDuongBayDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "LoaiVe";
-    List<LoaiVe> LoaiVes = null;
+    String tblName = "TuyenDuongBay";
+    List<TuyenDuongBay> TuyenDuongBays = null;
+
 
     String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
-    String createQuery = "INSERT INTO " + tblName + "(loai,ghichu) " + "VALUES(?,?)";
-    String updateQuery = "UPDATE LoaiVe SET loai=?,ghichu=? WHERE id=?";
-
-    // Default
+    String createQuery = "INSERT INTO " + tblName + "(heso,ghichu) " + "VALUES(?,?)";
+    String updateQuery = "UPDATE TuyenDuongBay SET heso= ?,ghichu=? WHERE id=?";
     String readQuery = "SELECT * from "+tblName+" WHERE id=?";
     String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
-
 
     private Connection getConnection() {
         Connection conn;
@@ -36,43 +34,43 @@ public class LoaiVeDAO implements DAO {
 
     @Override
     public Optional get(int id) {
-        return LoaiVes.stream().filter(u -> u.getId() == id).findFirst();
+        return TuyenDuongBays.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public List gellAll() {
-        LoaiVes = new ArrayList<>();
+        TuyenDuongBays = new ArrayList<>();
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(getAllQuery);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                LoaiVe t = new LoaiVe();
+                TuyenDuongBay t = new TuyenDuongBay();
                 t.resultMap(resultSet);
-                LoaiVes.add(t);
+                TuyenDuongBays.add(t);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return LoaiVes;
+        return TuyenDuongBays;
     }
 
     @Override
     public void create(Object o) {
-        LoaiVe t = (LoaiVe) o;
+        TuyenDuongBay t = (TuyenDuongBay) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
             t.ptmtCreate(ptmt).executeUpdate();
-            System.out.println("sc");
+            new LogMessage(true, tblName);
         } catch (SQLException e) {
-            System.out.println("f");
+            new LogMessage(false, tblName);
         }
     }
 
     @Override
     public Object read(int t) {
-        LoaiVe LoaiVe = new LoaiVe();
+        TuyenDuongBay TuyenDuongBay = new TuyenDuongBay();
         try {
 
             conn = getConnection();
@@ -80,17 +78,17 @@ public class LoaiVeDAO implements DAO {
             ptmt.setInt(1, t);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                LoaiVe.resultMap(resultSet);
+                TuyenDuongBay.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return LoaiVe;
+        return TuyenDuongBay;
     }
 
     @Override
     public void update(Object o) {
-        LoaiVe t = (LoaiVe) o;
+        TuyenDuongBay t = (TuyenDuongBay) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(updateQuery);
@@ -105,7 +103,7 @@ public class LoaiVeDAO implements DAO {
 
     @Override
     public void delete(Object o) {
-        LoaiVe t = (LoaiVe) o;
+        TuyenDuongBay t = (TuyenDuongBay) o;
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(deleteQuery);

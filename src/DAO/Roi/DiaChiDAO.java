@@ -1,9 +1,8 @@
-package DAO.Hi;
+package DAO.Roi;
 
-import Conn.Conn;
 import DAO.DAO;
-import Model.Hi.NguoiDung;
-
+import Model.Roi.DiaChi;
+import Conn.Conn;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,19 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class NguoiDungDAO implements DAO {
+public class DiaChiDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "NguoiDung";
-    List<NguoiDung> NguoiDungs = null;
+    String tblName = "diachi";
+    List<DiaChi> diaChis = null;
 
-
-    String createQuery = "INSERT INTO " + tblName + "(tennguoidung,password,tinhtrang,thongtinnguoidungid,quyenid) " + "VALUES(?,?,?,?,?)";
-    String updateQuery = "UPDATE NguoiDung SET tennguoidung=?,password=?,tinhtrang=?,thongtinnguoidungid=?,quyenid=? WHERE id=?";
-
-    // Default
     String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
+    String createQuery = "INSERT INTO " + tblName + "(xa,huyen,tinh,quocgia) " + "VALUES(?,?,?,?)";
+    String updateQuery = "UPDATE diachi SET xa=?,huyen=?, tinh=?, quocgia=? WHERE id=?";
     String readQuery = "SELECT * from "+tblName+" WHERE id=?";
     String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
 
@@ -37,30 +33,30 @@ public class NguoiDungDAO implements DAO {
 
     @Override
     public Optional get(int id) {
-        return NguoiDungs.stream().filter(u -> u.getId() == id).findFirst();
+        return diaChis.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public List gellAll() {
-        NguoiDungs = new ArrayList<>();
+        diaChis = new ArrayList<>();
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(getAllQuery);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                NguoiDung t = new NguoiDung();
+                DiaChi t = new DiaChi();
                 t.resultMap(resultSet);
-                NguoiDungs.add(t);
+                diaChis.add(t);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return NguoiDungs;
+        return diaChis;
     }
 
     @Override
     public void create(Object o) {
-        NguoiDung t = (NguoiDung) o;
+        DiaChi t = (DiaChi) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
@@ -73,7 +69,7 @@ public class NguoiDungDAO implements DAO {
 
     @Override
     public Object read(int t) {
-        NguoiDung NguoiDung = new NguoiDung();
+        DiaChi diaChi = new DiaChi();
         try {
 
             conn = getConnection();
@@ -81,17 +77,17 @@ public class NguoiDungDAO implements DAO {
             ptmt.setInt(1, t);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                NguoiDung.resultMap(resultSet);
+                diaChi.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return NguoiDung;
+        return diaChi;
     }
 
     @Override
     public void update(Object o) {
-        NguoiDung t = (NguoiDung) o;
+        DiaChi t = (DiaChi) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(updateQuery);
@@ -106,7 +102,7 @@ public class NguoiDungDAO implements DAO {
 
     @Override
     public void delete(Object o) {
-        NguoiDung t = (NguoiDung) o;
+        DiaChi t = (DiaChi) o;
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(deleteQuery);

@@ -1,7 +1,7 @@
-package DAO.Hi;
+package DAO.Roi;
 
 import DAO.DAO;
-import Model.Hi.HeSoGio;
+import Model.Roi.HeSoGio;
 import Conn.Conn;
 
 import java.sql.Connection;

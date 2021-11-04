@@ -1,7 +1,7 @@
-package DAO.Kien;
+package DAO.Chua;
 
 import DAO.DAO;
-import Model.Hi.Quyen;
+import Model.Roi.Quyen;
 import Conn.Conn;
 
 import java.sql.Connection;

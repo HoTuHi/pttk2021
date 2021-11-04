@@ -1,4 +1,4 @@
-package Model.Nam;
+package Model.Chua;
 
 import java.io.Serializable;
 

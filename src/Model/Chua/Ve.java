@@ -1,8 +1,8 @@
-package Model.Nam;
+package Model.Chua;
 
-import Model.Hi.ChuyenBay;
-import Model.Hi.DiaChi;
-import Model.Hi.ThongTinNguoiDung;
+import Model.Roi.ChuyenBay;
+import Model.Roi.DiaChi;
+import Model.Roi.ThongTinNguoiDung;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

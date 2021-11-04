@@ -1,7 +1,7 @@
 package DAO;
 
 import Model.TestModel;
-import Connection.Conn;
+import Conn.Conn;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +36,7 @@ public class TestDAO implements DAO<TestModel> {
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
                 TestModel t = new TestModel();
-                t.prepare(resultSet);
+                t.resultMap(resultSet);
                 testModels.add(t);
 //                System.out.println(t.toString());
             }
@@ -58,7 +58,7 @@ public class TestDAO implements DAO<TestModel> {
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(stringQuery, ptmt.RETURN_GENERATED_KEYS);
-            t.prepareQuery(ptmt,false).executeUpdate();
+            t.ptmtUpdate(ptmt,false).executeUpdate();
             System.out.println("success");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,7 +76,7 @@ public class TestDAO implements DAO<TestModel> {
             ptmt.setInt(1,te);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                testModel.prepare(resultSet);
+                testModel.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -91,7 +91,7 @@ public class TestDAO implements DAO<TestModel> {
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(stringQuery);
-            ptmt = t.prepareQuery(ptmt,true);
+            ptmt = t.ptmtUpdate(ptmt,true);
             ptmt.executeUpdate();
             System.out.println("success");
         } catch (SQLException e) {
@@ -104,7 +104,7 @@ public class TestDAO implements DAO<TestModel> {
     @Override
     public void delete(TestModel te) {
         try {
-            String querryString = "DELETE * from test WHERE id=?";
+            String querryString = "DELETE FROM test WHERE id=?";
             conn = getConnection();
             ptmt = conn.prepareStatement(querryString);
             ptmt.setInt(1, te.getId());

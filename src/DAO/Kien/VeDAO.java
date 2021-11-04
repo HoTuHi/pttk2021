@@ -1,11 +1,11 @@
 package DAO.Kien;
 
-import Connection.Conn;
+import Conn.Conn;
 import DAO.DAO;
 import Model.Hi.ChuyenBay;
 import Model.Hi.DiaChi;
-import Model.Kien.ThongTinNguoiDung;
-import Model.Kien.Ve;
+import Model.Hi.ThongTinNguoiDung;
+import Model.Nam.Ve;
 import Model.Nam.HoaDon;
 
 import java.sql.Connection;

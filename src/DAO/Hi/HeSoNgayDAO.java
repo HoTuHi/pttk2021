@@ -1,8 +1,9 @@
 package DAO.Hi;
 
-import DAO.DAO;
-import Model.Hi.DiaChi;
 import Conn.Conn;
+import DAO.DAO;
+import Model.Hi.HeSoNgay;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,19 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DiaChiDAO implements DAO {
+public class HeSoNgayDAO implements DAO {
     Connection conn = null;
     PreparedStatement ptmt = null;
     ResultSet resultSet = null;
-    String tblName = "diachi";
-    List<DiaChi> diaChis = null;
+    String tblName = "hesongay";
+    List<HeSoNgay> heSoNgays = null;
+
 
     String getAllQuery = "SELECT * from " + tblName + " ORDER BY id";
-    String createQuery = "INSERT INTO " + tblName + "(xa,huyen,tinh,quocgia) " + "VALUES(?,?,?,?)";
-    String updateQuery = "UPDATE diachi SET xa=?,huyen=?, tinh=?, quocgia=? WHERE id=?";
+    String createQuery = "INSERT INTO " + tblName + "(heso,ghichu) " + "VALUES(?,?)";
+    String updateQuery = "UPDATE hesongay SET heso= ?,ghichu=? WHERE id=?";
     String readQuery = "SELECT * from "+tblName+" WHERE id=?";
     String deleteQuery = "DELETE FROM "+tblName+" WHERE id=?";
-
 
     private Connection getConnection() {
         Connection conn;
@@ -33,43 +34,43 @@ public class DiaChiDAO implements DAO {
 
     @Override
     public Optional get(int id) {
-        return diaChis.stream().filter(u -> u.getId() == id).findFirst();
+        return heSoNgays.stream().filter(u -> u.getId() == id).findFirst();
     }
 
     @Override
     public List gellAll() {
-        diaChis = new ArrayList<>();
+        heSoNgays = new ArrayList<>();
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(getAllQuery);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                DiaChi t = new DiaChi();
+                HeSoNgay t = new HeSoNgay();
                 t.resultMap(resultSet);
-                diaChis.add(t);
+                heSoNgays.add(t);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return diaChis;
+        return heSoNgays;
     }
 
     @Override
     public void create(Object o) {
-        DiaChi t = (DiaChi) o;
+        HeSoNgay t = (HeSoNgay) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(createQuery, ptmt.RETURN_GENERATED_KEYS);
             t.ptmtCreate(ptmt).executeUpdate();
-            System.out.println("sc");
+            new LogMessage(true, tblName);
         } catch (SQLException e) {
-            System.out.println("f");
+            new LogMessage(false, tblName);
         }
     }
 
     @Override
     public Object read(int t) {
-        DiaChi diaChi = new DiaChi();
+        HeSoNgay heSoNgay = new HeSoNgay();
         try {
 
             conn = getConnection();
@@ -77,17 +78,17 @@ public class DiaChiDAO implements DAO {
             ptmt.setInt(1, t);
             resultSet = ptmt.executeQuery();
             while (resultSet.next()) {
-                diaChi.resultMap(resultSet);
+                heSoNgay.resultMap(resultSet);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return diaChi;
+        return heSoNgay;
     }
 
     @Override
     public void update(Object o) {
-        DiaChi t = (DiaChi) o;
+        HeSoNgay t = (HeSoNgay) o;
         conn = getConnection();
         try {
             ptmt = conn.prepareStatement(updateQuery);
@@ -102,7 +103,7 @@ public class DiaChiDAO implements DAO {
 
     @Override
     public void delete(Object o) {
-        DiaChi t = (DiaChi) o;
+        HeSoNgay t = (HeSoNgay) o;
         try {
             conn = getConnection();
             ptmt = conn.prepareStatement(deleteQuery);

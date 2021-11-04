@@ -1,21 +1,95 @@
 package Model.Hi;
 
-import Model.Nam.MayBay;
+import Model.Hi.MayBay;
+import Model.model;
 
 import java.io.Serializable;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class Ghe implements Serializable {
-    private MayBay mayBay;
-    private int masoghe;
-    private String loaighe;
+public class Ghe implements Serializable, model {
+
+    int id;
+    String hang;
+    String ghiChu;
+    MayBay mayBay;
 
     public Ghe() {
     }
 
-    public Ghe(MayBay mayBay, int masoghe, String loaighe) {
+    public Ghe(int id) {
+        this.id = id;
+    }
+
+    public Ghe(int id, String hang, String ghiChu, MayBay mayBay) {
+        this.id = id;
+        this.hang = hang;
+        this.ghiChu = ghiChu;
         this.mayBay = mayBay;
-        this.masoghe = masoghe;
-        this.loaighe = loaighe;
+    }
+
+
+    @Override
+    public void resultMap(ResultSet resultSet) throws SQLException {
+        this.id = resultSet.getInt("id");
+        this.hang = resultSet.getString("hang");
+        this.ghiChu = resultSet.getString("ghichu");
+        this.mayBay = new MayBay(resultSet.getInt("maybayid"));
+    }
+
+    @Override
+    public PreparedStatement ptmtUpdate(PreparedStatement ptmt) throws SQLException {
+        //SET
+        ptmt.setString(1,this.getHang());
+        ptmt.setString(2,this.getGhiChu());
+        ptmt.setInt(3,this.getMayBay().getId());
+        //Where
+        ptmt.setInt(4,this.getId());
+
+        return ptmt;
+    }
+
+    @Override
+    public PreparedStatement ptmtCreate(PreparedStatement ptmt) throws SQLException {
+        ptmt.setString(1,this.getHang());
+        ptmt.setString(2,this.getGhiChu());
+        ptmt.setInt(3,this.getMayBay().getId());
+        return ptmt;
+    }
+
+    @Override
+    public String toString() {
+        return "Ghe{" +
+                "id=" + id +
+                ", hang='" + hang + '\'' +
+                ", ghiChu='" + ghiChu + '\'' +
+                ", mayBay=" + mayBay +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getHang() {
+        return hang;
+    }
+
+    public void setHang(String hang) {
+        this.hang = hang;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
     }
 
     public MayBay getMayBay() {
@@ -24,24 +98,5 @@ public class Ghe implements Serializable {
 
     public void setMayBay(MayBay mayBay) {
         this.mayBay = mayBay;
-    }
-
-    public int getMasoghe() {
-        return masoghe;
-    }
-
-    public void setMasoghe(int masoghe) {
-        this.masoghe = masoghe;
-    }
-
-    public String getLoaighe() {
-        return loaighe;
-    }
-
-    public void setLoaighe(String loaighe) {
-        this.loaighe = loaighe;
-    }
-    public Object[] toObject(){
-        return new Object[]{ mayBay.getId(),masoghe,loaighe};
     }
 }

@@ -4,13 +4,15 @@ import DAO.Hi.DiaChiDAO;
 import Model.Hi.DiaChi;
 
 import java.sql.SQLException;
-
+//all done 1/11/2021
 public class testDiaChiDAO {
     public static void main(String[] args) throws SQLException {
         DiaChiDAO diaChiDAO = new DiaChiDAO();
         // getAll- done
-        for (DiaChi i : diaChiDAO.gellAll()) {
-            System.out.println(i.toString());
+        for (Object i : diaChiDAO.gellAll()) {
+            if(i instanceof DiaChi){
+                System.out.println(i.toString());
+            }
         }
         //Create
         DiaChi d = new DiaChi(5, "12", "12", "12", "123");
@@ -23,6 +25,6 @@ public class testDiaChiDAO {
         //delete
         diaChiDAO.delete(d);
         //update
-        diaChiDAO.update(new DiaChi(57, "thinh son", "tien du", "bacNinh", "NgheAn"));
+        diaChiDAO.update(new DiaChi(1, "thinh son", "tien du", "bacNinh", "NgheAn"));
     }
 }

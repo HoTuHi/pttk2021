@@ -42,12 +42,12 @@ public class TestModel {
         this.value = value;
     }
 
-    public void prepare(ResultSet resultSet) throws SQLException {
+    public void resultMap(ResultSet resultSet) throws SQLException {
         this.id = resultSet.getInt("id");
         this.title = resultSet.getString("title");
         this.value = resultSet.getInt("value");
     }
-    public PreparedStatement prepareQuery(PreparedStatement ptmt,boolean flag) throws SQLException {
+    public PreparedStatement ptmtUpdate(PreparedStatement ptmt, boolean flag) throws SQLException {
         ptmt.setString(1,this.getTitle());
         ptmt.setInt(2,this.getValue());
         if(flag){

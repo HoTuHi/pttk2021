@@ -1,7 +1,7 @@
 package DAO.testDAO;
 
-import DAO.Roi.TuyenDuongBayDAO;
-import Model.Roi.TuyenDuongBay;
+import DAO.TuyenDuongBayDAO;
+import Model.TuyenDuongBay;
 
 public class testTuyenDuongBayDAO {
     public static void main(String[] args) {

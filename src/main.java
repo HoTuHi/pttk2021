@@ -1,24 +1,22 @@
-import DAO.Roi.DiaChiDAO;
-import Model.Roi.DiaChi;
-
+import java.io.File;
 import java.sql.SQLException;
 
 public class main {
     public static void main(String[] args) throws SQLException {
-        // make a connection for all.
+        File file = null;
+        boolean isCreat = false;
+        try{
 
-        // example
-        DiaChiDAO diaChiDAO = new DiaChiDAO();
-//        for (DiaChi i : diaChiDAO.gellAll()) {
-//            System.out.println(i.getId() + i.getXa());
-//        }
-//        DiaChi d = new DiaChi(5, "12", "12", "12", "123");
-//        diaChiDAO.create(d);
-//        for (DiaChi i : diaChiDAO.gellAll()) {
-//            System.out.println(i.getId() + i.getXa());
-//        }
-        DiaChi x = (DiaChi) diaChiDAO.read(2);
-        System.out.println(x.getXa()+x.getHuyen());
-
+            file = new File("C:\\Users\\Admin\\IdeaProjects\\pttk2021\\src\\View\\login.jsp");
+            isCreat = file.createNewFile();
+            if (isCreat)
+                System.out.print("Da tao file thanh cong!");
+            else
+                System.out.print("Tao file that bai");
+            //file.delete();
+        }
+        catch (Exception e){
+            System.out.print(e);
+        }
     }
 }

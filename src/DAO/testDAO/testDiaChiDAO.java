@@ -1,7 +1,7 @@
 package DAO.testDAO;
 
-import DAO.Roi.DiaChiDAO;
-import Model.Roi.DiaChi;
+import DAO.DiaChiDAO;
+import Model.DiaChi;
 
 import java.sql.SQLException;
 //all done 1/11/2021
